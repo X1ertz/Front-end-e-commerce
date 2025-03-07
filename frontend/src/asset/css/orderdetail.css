@@ -1,0 +1,136 @@
+.order-info-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    font-size: 24px;
+}
+
+.customer-id-info,
+.order-status {
+    font-size: 18px;
+    color: #555;
+    margin: 10px 0;
+}
+
+.payment-proof-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.payment-proof-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    object-fit: cover;
+    border: 2px solid #ddd;
+}
+
+.order-items-header {
+    font-size: 20px;
+    margin-top: 20px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 5px;
+}
+
+.order-list {
+    list-style: none;
+    padding: 0;
+}
+
+.order-list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f9f9f9;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.item-details {
+    flex: 1;
+}
+
+.item-label {
+    font-weight: bold;
+    color: #444;
+}
+
+.item-image-container {
+    flex-shrink: 0;
+}
+
+.item-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+.show-proof-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px 0;
+}
+
+.show-proof-btn:hover {
+    background-color: #0056b3;
+}
+
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+    text-align: center;
+}
+
+.popup-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 18px;
+    cursor: pointer;
+    color: red;
+}
+
+.close-btn:hover {
+    color: darkred;
+}
+
+

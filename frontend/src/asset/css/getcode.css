@@ -1,0 +1,155 @@
+/* General container */
+.containerx {
+
+    background-color: #f5f5f5; /* Light gray for the background */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.headerx {
+    position: relative;
+    overflow: hidden; /* To hide the text when it's out of view */
+    background-color: #4e2a84; 
+    color: white;
+    font-size: 1.5rem; /* Adjusted font size */
+    font-weight: 700;
+    padding: 1rem;
+    border-radius: 0.375rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Back button style */
+.back-button {
+    position: absolute;
+    left: 10px;
+    background-color: #f5a623; /* Golden color for back button */
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-weight: 700;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-left: 1rem;
+}
+
+/* Hover effect for the back button */
+.back-button:hover {
+    background-color: #d88f1e;
+}
+
+/* Scroll animation for text */
+.headerx .scrolling-text {
+    position: absolute;
+    white-space: nowrap;
+    animation: scrollText 10s linear infinite;
+    font-size: 1.5rem; /* Size of the scrolling text */
+}
+
+/* Animation keyframes for scrolling effect */
+@keyframes scrollText {
+    0% {
+        left: 100%; /* Start from the right side */
+    }
+    50% {
+        left: calc(50% - 300px); /* Center the text horizontally with 600px distance */
+    }
+    100% {
+        left: -100%; /* End at the left side */
+    }
+}
+
+.content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1400px;
+    gap: 1rem;
+    margin-left: 30%;
+}
+
+.discount-codes {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 60%;
+}
+
+
+.discount-card {
+    background-color: white;
+    padding: 1rem;
+    border-radius: 0.375rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: row;
+}
+
+/* Store name block */
+.store-name {
+    background-color: #d0a500; /* Gold */
+    color: white;
+    font-weight: 700;
+    font-size: 1.125rem;
+    padding: 1rem;
+    text-align: center;
+    border-radius: 0.375rem;
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Discount details */
+.details {
+    padding-left: 1rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Discount name */
+.discount-name {
+    font-size: 1.125rem;
+    font-weight: 700;
+}
+
+/* Minimum spend text */
+.min-spend {
+    color: #7f8c8d;
+    font-size: 0.875rem;
+}
+
+/* Claim button */
+.claim-button {
+    margin-top: 0.5rem;
+    padding: 0.5rem 1rem;
+    font-weight: 700;
+    background-color: #2c3e50; /* Dark navy */
+    color: white;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border: none;
+}
+
+/* Disabled button (claimed) */
+.claim-button.claimed {
+    background-color: #95a5a6; /* Light gray */
+    cursor: not-allowed;
+}
+
+/* Hover effect */
+.claim-button:not(.claimed):hover {
+    background-color: #1c2833;
+}

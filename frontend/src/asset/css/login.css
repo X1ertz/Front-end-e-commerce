@@ -1,5 +1,5 @@
 /* รูปแบบพื้นฐานของหน้า */
-body {
+.login {
     font-family: Arial, sans-serif;
     background-color: #f4f7fc;
     display: flex;
@@ -16,7 +16,7 @@ body {
     border-radius: 8px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     width: 370px;
-    height: 450px;
+    height: 520px;
     text-align: center;
   }
   
@@ -79,7 +79,7 @@ body {
   }
   
 
-  button {
+  .button {
     position: relative;
     display: flex;
     justify-content: center;
@@ -93,7 +93,7 @@ body {
     border: none;
   }
   
-  button:after {
+  .button:after {
     content: " ";
     width: 0%;
     height: 100%;
@@ -103,13 +103,13 @@ body {
     right: 0;
   }
   
-  button:hover::after {
+  .button:hover::after {
     right: auto;
     left: 0;
     width: 100%;
   }
   
-  button span {
+  .button span {
     text-align: center;
     text-decoration: none;
     width: 100%;
@@ -122,7 +122,7 @@ body {
     transition: all 0.3s ease-in-out;
   }
   
-  button:hover span {
+  .button:hover span {
     color: #183153;
     animation: scaleUp 0.3s ease-in-out;
   }
