@@ -14,6 +14,8 @@ import Admincategory from "./components/admincategory";
 import Adminorder from "./components/adminorder"
 import OrderDetail from "./components/orderdetail";
 import Discount from "./components/discount"
+import Admin from "./components/admin"
+import EditProfile from "./components/editprofile";
 const App = () => {
   return (
     <BrowserRouter>
@@ -32,6 +34,8 @@ const App = () => {
         <Route path="/adminorder" element={<Adminorder />} />
         <Route path="/orders/:orderId" element={<OrderDetail />} />
         <Route path="/discount" element={<Discount />} />
+        <Route path="/admin" element={<Admin />} />
+        <Route path="/editprofile" element={<EditProfile />} />
       </Routes>
     </BrowserRouter>
   );

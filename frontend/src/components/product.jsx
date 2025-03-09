@@ -4,21 +4,16 @@ import 'toastr/build/toastr.min.css';
 import { useNavigate } from 'react-router-dom';
 import { fetchProducts } from "../services/api";
 import '../asset/css/product.css';
-import { Link as ScrollLink } from "react-scroll";
 import { Link,useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faGear,faPen,faHeart, faShoppingCart,faDoorOpen } from "@fortawesome/free-solid-svg-icons";
-import { motion, AnimatePresence } from "framer-motion";
-import { base } from 'framer-motion/client';
+import { faUser, faGear,faPen,faHeart, faShoppingCart,faDoorOpen,faUserShield } from "@fortawesome/free-solid-svg-icons";
 function Product() {
   const base_url = "http://localhost:3000"  
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
-  const location = useLocation();
   const [user, setUser] = useState(null);
   const [wishlist, setWishlist] = useState([]);
-  const [isChecked, setIsChecked] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const filteredProducts = products.filter((product) =>
     product.productname.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -55,20 +50,20 @@ function Product() {
       return;
     }
 
-    // ใช้ user.id หรือ user.email เป็น key ใน localStorage
+
     const wishlistKey = `wishlist_${storedUser.id}`;
     const existingWishlist = JSON.parse(localStorage.getItem(wishlistKey)) || [];
 
     const existingIndex = existingWishlist.findIndex((item) => item.id === product.id);
 
     if (existingIndex !== -1) {
-        // ลบสินค้าออกจาก Wishlist
+
         const updatedWishlist = existingWishlist.filter((item) => item.id !== product.id);
         setWishlist(updatedWishlist);
         localStorage.setItem(wishlistKey, JSON.stringify(updatedWishlist));
         toastr.warning("สินค้าถูกลบออกจาก Wishlist!");
     } else {
-        // เพิ่มสินค้าเข้า Wishlist
+
         const updatedWishlist = [...existingWishlist, product];
         setWishlist(updatedWishlist);
         localStorage.setItem(wishlistKey, JSON.stringify(updatedWishlist));
@@ -108,7 +103,7 @@ function Product() {
       existingCart.push(cartItem);
     }
   
-    // เก็บตะกร้าแยกตามผู้ใช้
+
     localStorage.setItem(`${userId}_cart`, JSON.stringify(existingCart));
   
     toastr.success(`Item added ${product.productname} to cart!`, 'Success');
@@ -128,12 +123,12 @@ function Product() {
   return (
     <>
     <nav className="navbar">
-            <ul className="nav-links">
+            <ul className="nav-linkss">
               <li><Link to="/" >Home</Link></li>
-              <li><Link to="/product" >Shop</Link></li>
+          <li><Link to="/product" >Shop</Link></li>
           {user ? (
             <>
-              <li><Link to="/cart">Cart</Link></li> {/* Display Cart link */}
+              <li><Link to="/cart">Cart</Link></li>
               <li><Link to="/heart">Wishlist</Link></li>
               <li className="user-menu">
                 <span onClick={toggleDropdown} className="dropdown-toggle">
@@ -141,9 +136,12 @@ function Product() {
                 </span>
                 {isOpen && (
                   <ul className={`dropdown-menu ${isOpen ? 'show' : ''}`}>
-                    <li><Link to="/edit-profile">Edit<FontAwesomeIcon className="icon" icon={faPen} /></Link></li>
-                    <li><Link to="/cart">Cart<FontAwesomeIcon className="icon" icon={faShoppingCart} /></Link></li>
-                    <li><Link to="/heart">Wishlist<FontAwesomeIcon className="icon" icon={faHeart} /></Link></li>
+                    {user.role == "admin" && (
+                      <li><Link to="/admin">Admin Panel<FontAwesomeIcon className='icon' icon={faUserShield} /></Link></li>
+                    )}
+                    <li><Link to="/edit-profile">Edit<FontAwesomeIcon className='icon' icon={faPen} /></Link></li>
+                    <li><Link to="/cart">Cart<FontAwesomeIcon className='icon' icon={faShoppingCart} /></Link></li>
+                    <li><Link to="/heart">Wishlist<FontAwesomeIcon className='icon' icon={faHeart} /></Link></li>
                     <li>
                       <span onClick={handleLogout}>
                         Logout <FontAwesomeIcon className="icon" icon={faDoorOpen} />
@@ -154,7 +152,7 @@ function Product() {
               </li>
             </>
           ) : (
-            <li><Link to="/login">Sign in</Link></li> // Link to login page if the user is not logged in
+            <li><Link to="/login">Sign in</Link></li> 
           )}
 
         </ul>
@@ -218,7 +216,6 @@ function Product() {
                 />
               </div>
 
-              {/* Card back with form to select size and quantity */}
               <div className="card-back">
                 <p className='desc'>Details: {product.description}</p>
                 <form
@@ -269,7 +266,6 @@ function Product() {
               </div>
             </div>
 
-            {/* Product name and price */}
             <div className="card-details">
               <h3 className="product-name">{product.productname}</h3>
               <p className="product-price">฿{product.unitprice.toLocaleString()}</p>

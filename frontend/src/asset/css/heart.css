@@ -82,3 +82,12 @@
 .back-to-shop:hover {
   background: #0056b3;
 }
+.footerz {
+  background-color: #333;
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+  top: 50%;
+  left: 50%; 
+  transform: translate(0%, 263%);
+}

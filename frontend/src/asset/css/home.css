@@ -8,14 +8,9 @@ body {
 section {
     padding: 50px 0;
     text-align: center;
-    width: 100%; /* ใช้ 100% ของหน้าจอ */
+    width: 100%; 
     min-height: 100vh;
     overflow-y: hidden; 
-    /* display: flex; 
-    align-items: center;
-    justify-content: center; */
-    /* border: 1px solid red; */
-    /* background-color: aliceblue; */
     top: 0;
     left: 0;
     transform: none;
@@ -31,6 +26,7 @@ section {
     height: 500px;
     position: relative;
     z-index: 2;
+    
   }
   .container h1{
     text-align: left;
@@ -51,13 +47,12 @@ section {
     width: 30%;
     padding: 20px;
     height: 300px;
-    /* background-color: rgba(240, 248, 255, 0.836); */
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     top: 50%;
     left: 50%;
     transform: translate(40%, 100%);
-
+    
   }
   .container3 {
     width: 45%;
@@ -65,28 +60,27 @@ section {
     height: 600px;
     background-color: rgb(255, 209, 58);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.473);
-    top: 50%; /* กึ่งกลางแนวตั้ง */
-    left: 50%; /* กึ่งกลางแนวนอน */
+    top: 50%; 
+    left: 50%; 
     transform: translate(90%, 28%);
 
   }
   
-  /* ปรับสีพื้นหลังแต่ละ Section */
-  .section-1 { background-image: url(../images/sec1bg.png); background-size:auto; }
+  .section-1 { background-image: url(../images/sec1bg.png); background-size:cover; }
   .section-2 {background-color: rgb(255, 255, 255); } 
   .section-3 { background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(255, 255, 255, 0.7)), 
-    url(../images/sec3.png); } /* สีเขียวอ่อน */
-  .section-4 {background-color: #27445D;} /* สีชมพูอ่อน */
+    url(../images/sec3.png); } 
+  .section-4 {background-color: #27445D;} 
   
   .navbar {
-    position: fixed; /* ตรึง Navbar */
-    top: 2.5%; /* กึ่งกลางแนวตั้ง */
-    left: 50%; /* กึ่งกลางแนวนอน */
-    transform: translate(-50%, -50%); /* ปรับตำแหน่งให้ตรงกลาง */
-    background: rgba(0, 0, 0, 0); /* สีดำโปร่งใส */
+    position: fixed;
+    top: 2.5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0);
     padding: 15px 30px;
     border-radius: 10px;
-    backdrop-filter: blur(10px); /* เอฟเฟกต์เบลอ */
+    backdrop-filter: blur(10px);
     display: flex; 
     align-items: center;
     justify-content: center;
@@ -95,7 +89,7 @@ section {
     height: 40px;
   }
   
-  /* สไตล์ของรายการเมนู */
+
   .nav-links {
     list-style: none;
     margin-top: 0px;
@@ -105,7 +99,7 @@ section {
     margin-top: 30px;
   }
   
-  /* สไตล์ของลิงก์ */
+  
   .navbar ul li {
     display: inline;
   }
@@ -127,7 +121,7 @@ section {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1; /* ทำให้ Background อยู่ด้านหลัง */
+    z-index: -1;
   }
   
   .slideshow {
@@ -142,8 +136,8 @@ section {
     object-fit: cover;
     opacity: 0;
     animation: slideShow 12s infinite;
-    top: 50%; /* กึ่งกลางแนวตั้ง */
-    left: 50%; /* กึ่งกลางแนวนอน */
+    top: 50%; 
+    left: 50%; 
     transform: translate(-50%, 60%);
   }
   
@@ -178,8 +172,8 @@ section {
     display: flex;
     align-items: center;
     background-color: #292524;
-    top: 50%; /* กึ่งกลางแนวตั้ง */
-    left: 50%; /* กึ่งกลางแนวนอน */
+    top: 50%; 
+    left: 50%; 
     transform: translate(160%, 305%);
   }
   
@@ -220,7 +214,7 @@ section {
     transition: all 0.3s;
   }
   .arrow {
-    /* display: none; */
+
     position: absolute;
     margin-right: 150px;
     transition: all 0.3s;
@@ -274,13 +268,11 @@ section {
     justify-content: center;
     padding: 25px 25px;
     gap: 20px;
-    /* box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.055); */
-    top: 50%; /* กึ่งกลางแนวตั้ง */
-    left: 50%; /* กึ่งกลางแนวนอน */
+    top: 50%; 
+    left: 50%; 
     transform: translate(300%, 0%);
   }
   
-  /* for all social containers*/
   .socialContainer {
     width: 40px;
     height: 50px;
@@ -292,22 +284,22 @@ section {
     transition-duration: 1.2s;
     border-radius: 15px 0 15px 0px;
   }
-  /* instagram*/
+
   .containerOne:hover {
     background-color: #d62976;
     transition-duration: 1.2s;
   }
-  /* twitter*/
+
   .containerTwo:hover {
     background-color: #00acee;
     transition-duration: 1.2s;
   }
-  /* linkdin*/
+
   .containerThree:hover {
     background-color: #0072b1;
     transition-duration: 1.2s;
   }
-  /* Whatsapp*/
+
   .containerFour:hover {
     background-color: #f90101;
     transition-duration: 1.2s;
@@ -342,14 +334,14 @@ section {
     }
   }
 
-  footer {
+  .footerx {
     background-color: #333;
     color: white;
     padding: 20px 0;
     text-align: center;
-    top: 50%; /* กึ่งกลางแนวตั้ง */
-    left: 50%; /* กึ่งกลางแนวนอน */
-    transform: translate(0%, 191%);
+    top: 50%; 
+    left: 50%; 
+    transform: translate(0%, 170%);
   }
   
   .footer-content {
@@ -439,14 +431,13 @@ from { border-right-color: rgba(255,255,255,.75); }
 to { border-right-color: transparent; }
 }
 
-/*Loading*/
 .loader {
   width: 200px;
   max-height: 900px;
   transform-origin: 50% 50%;
   overflow: visible;
-  top: 50%; /* กึ่งกลางแนวตั้ง */
-  left: 50%; /* กึ่งกลางแนวนอน */
+  top: 50%; 
+  left: 50%; 
   transform: translate(420%, 175%);
 }
 
@@ -621,7 +612,7 @@ to { border-right-color: transparent; }
   
 }
 
-/* ทำให้ปุ่มดูน่าสนใจ */
+
 .dropdown-toggle {
   padding: 10px 20px;
   background-color: #adadad;
@@ -640,7 +631,7 @@ to { border-right-color: transparent; }
   box-shadow: 0px 4px 10px rgb(69, 103, 255);
 }
 
-/* เมนูดรอปดาวน์ */
+
 .dropdown-menu {
   position: absolute;
   top: 100%;
@@ -661,7 +652,7 @@ to { border-right-color: transparent; }
   transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s 0.3s;
 }
 
-/* เมื่อเมนูเปิด */
+
 .dropdown-menu.show {
   opacity: 1;
   visibility: visible;
@@ -669,7 +660,6 @@ to { border-right-color: transparent; }
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-/* สไตล์ของรายการในเมนู */
 .dropdown-menu li {
   padding: 12px 20px;
   font-size: 16px;
@@ -686,12 +676,12 @@ to { border-right-color: transparent; }
   cursor: pointer;
 }
 
-/* เพิ่ม animation เล็กๆ เพื่อให้รายการมีการเคลื่อนไหว */
+
 .dropdown-menu li {
   animation: slideIn 0.3s ease-out;
 }
 
-/* Animation ของรายการเมื่อแสดง */
+
 @keyframes slideIn {
   0% {
     transform: translateX(-20px);
@@ -705,7 +695,7 @@ to { border-right-color: transparent; }
 .icon{
   margin-left: 20px;
 }
-/* From Uiverse.io by marcelodolza */ 
+
 .button-perl {
   --white: #ffe7ff;
   --bg: #080808;
@@ -791,10 +781,8 @@ to { border-right-color: transparent; }
     0 3rem 3rem rgba(0, 0, 0, 0.3),
     0 1rem 1rem -0.6rem rgba(0, 0, 0, 0.8);
 }
-
-/* Fix for the active state to prevent button from "escaping" */
 .button-perl:active {
-  transform: translate(-241.5%, 600%); /* Keep the position consistent */
+  transform: translate(-241.5%, 600%);
   box-shadow:
     inset 0 0.3rem 0.5rem rgba(255, 255, 255, 0.5),
     inset 0 -0.1rem 0.3rem rgba(0, 0, 0, 0.8),
@@ -844,4 +832,137 @@ to { border-right-color: transparent; }
   left: 0;
   right: 0;
   opacity: 1;
+}
+@media (min-width: 1921px) and (max-width: 3075px) {
+
+  body {
+      font-size: 18px;
+  }
+  .loader {
+    width: 300px;
+    max-height: 900px;
+    transform-origin: 50% 50%;
+    overflow: visible;
+    top: 50%;
+    left: 0%;
+    transform: translate(470%, 200%);
+  }
+  .container {
+    width: 30%;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: translate(50%, 50%);
+    height: 550px;
+    position: relative;
+    z-index: 2;
+  }
+  .container3{
+    height: 700px;
+  }
+
+  .section-1 {
+    background-size: cover;
+    background-position: left center;
+  }
+  .section-3 {
+    background-size: cover;
+    background-position: left center;
+  }
+  .footerx {
+    background-color: #333;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(0%, 445%);
+  }
+  .c {
+    width: fit-content;
+    height: fit-content;
+    background-color: rgba(255, 255, 255, 0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 25px 25px;
+    gap: 20px;
+    top: 50%;
+    left: 50%;
+    transform: translate(520%, 0%);
+  }
+  .input-wrapper {
+    width: fit-content;
+    height: 60px;
+    border-radius: 20px;
+    padding: 5px;
+    box-sizing: content-box;
+    display: flex;
+    align-items: center;
+    background-color: #292524;
+    top: 50%;
+    left: 50%;
+    transform: translate(225%, 400%);
+  }
+  
+  .icon {
+    width: 30px;
+    fill: rgb(255, 255, 255);
+    margin-left: 8px;
+    transition: all 0.3s;
+  }
+  .input {
+    width: 400px;
+    height: 100%;
+    border: none;
+    outline: none;
+    padding-left: 15px;
+    background-color: #292524;
+    color: white;
+    font-size: 1em;
+  }
+  .input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px #292524 inset;
+    -webkit-text-fill-color: #ffffff;
+  }
+  .navbar ul li a {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    font-size: 24px;
+    transition: 0.3s;
+  }
+  .container p{
+    margin-top: 50px;
+    margin-left: 50px;
+    text-align: left;
+    font-size: 19.5px;
+    line-height: 1.5;
+
+  }
+  .des-delivery{
+    font-size: 22px;
+
+  }
+  .container h1{
+    margin-left: 20px;
+  }
+  .disc-btn {
+    background: #fff;
+    border: none;
+    padding: 10px 20px;
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 600;
+    width: 200px;
+    height: 50px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transform: skew(-21deg);
+    margin-top: 40px;
+    color: #000000;
+  }
+  .disc-span{
+    font-weight: bold;
+    font-size: 20px;
+  }
 }

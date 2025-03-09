@@ -15,7 +15,7 @@ export const sendDataToBackend = async (data) => {
 
 export const sendDataLogin = async (formData) => {
   try {
-    const response = await fetch(`${API_URL}/login`, {  // ใช้ API_URL ที่กำหนดไว้
+    const response = await fetch(`${API_URL}/login`, { 
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -127,7 +127,6 @@ export const saveUser = async (user, editing) => {
   }
 };
 
-// ลบผู้ใช้
 export const deleteUser = async (id) => {
   try {
     await axios.delete(`${API_URL}/users/${id}`);
@@ -323,7 +322,7 @@ export const deleteUsedDiscount = async (id) => {
 };
 export const updateUsedDiscount = async (id, data) => {
   try {
-    console.log("Sending data to API:", data);  // ตรวจสอบข้อมูลที่ส่งไป
+    console.log("Sending data to API:", data);
     await axios.put(`${API_URL}/used-discount/${id}`, data);
   } catch (error) {
     console.error("Error updating used discount", error);
@@ -332,10 +331,31 @@ export const updateUsedDiscount = async (id, data) => {
 };
 export const addUsedDiscount = async (data) => {
   try {
-    // ส่ง request POST ไปที่ API สำหรับการเพิ่ม used discount
-    await axios.post(`${API_URL}/used-discount`, data);  // ต้องแน่ใจว่า URL ถูกต้อง
+    await axios.post(`${API_URL}/used-discount`, data);
   } catch (error) {
     console.error("Error adding used discount", error);
     throw error;
+  }
+};
+
+export const changePassword = async (userId, oldPassword, newPassword) => {
+  try {
+    await axios.put(`${API_URL}/users/${userId}/password`, {
+      oldPassword,
+      newPassword,
+    });
+  } catch (error) {
+    console.error("Error changing password:", error);
+    throw error;
+  }
+};
+
+export const getUserOrders = async (userId) => {
+  try {
+    const response = await axios.get(`${API_URL}/orders/user/${userId}`)
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching orders:', error);
+    throw new Error('Could not fetch orders');
   }
 };

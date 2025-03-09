@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { fetchCategories, addCategory, updateCategory, deleteCategory } from "../services/api";
-import "../asset/css/admincategory.css"; // เชื่อมไฟล์ CSS
+import "../asset/css/admincategory.css";
 
 const Admincategory = () => {
     const [categories, setCategories] = useState([]);
@@ -11,7 +11,6 @@ const Admincategory = () => {
         loadCategories();
     }, []);
 
-    // โหลดข้อมูลหมวดหมู่
     const loadCategories = async () => {
         try {
             const data = await fetchCategories();
@@ -21,7 +20,6 @@ const Admincategory = () => {
         }
     };
 
-    // จัดการส่งฟอร์ม
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!form.Categoryname.trim()) return alert("Category name is required!");
@@ -39,7 +37,6 @@ const Admincategory = () => {
         }
     };
 
-    // ฟังก์ชันลบ
     const handleDelete = async (id) => {
         if (window.confirm("Are you sure you want to delete this category?")) {
             try {
@@ -51,7 +48,6 @@ const Admincategory = () => {
         }
     };
 
-    // ฟังก์ชันแก้ไข
     const handleEdit = (category) => {
         setForm(category);
         setEditing(true);
@@ -67,7 +63,7 @@ const Admincategory = () => {
         <div className="category-container">
             <h2>Category Management</h2>
 
-            {/* ฟอร์มเพิ่มและแก้ไข */}
+  
             <form className="category-form" onSubmit={handleSubmit}>
                 <input
                     type="text"
@@ -80,7 +76,7 @@ const Admincategory = () => {
                 {editing && <button type="button" onClick={resetForm} className="cancel-btn">Cancel</button>}
             </form>
 
-            {/* ตารางแสดงหมวดหมู่ */}
+
             <table className="category-table">
                 <thead>
                     <tr>

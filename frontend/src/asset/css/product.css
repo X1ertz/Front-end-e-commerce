@@ -1,17 +1,25 @@
+
 .product-cards {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
   justify-content: flex-start;
   margin: 20px 0;
-  /* border: 1px solid red; */
   width: 100%;
   margin-left: 6%;
 
 }
-
+.nav-linkss {
+  list-style: none;
+  margin-top: 0px;
+  padding: 0;
+  display: flex;
+  gap: 100px;
+  margin-top: 30px;
+  margin-left: 0%;
+}
 .card {
-  width: calc(15% - 16px); /* 100% / 5 คอลัมน์ - ระยะห่างระหว่างการ์ด */
+  width: calc(15% - 16px);
   height: 450px;
   perspective: 1000px;
   display: flex;
@@ -26,7 +34,7 @@
     position: relative;
     transform-style: preserve-3d;
     transition: transform 0.999s;
-    flex-grow: 1; /* ให้ส่วนนี้ขยายเต็มที่ */
+    flex-grow: 1;
   }
   
   .card:hover .card-inner {
@@ -50,16 +58,13 @@
     justify-content: center;
     font-size: 24px;
     transform: rotateY(0deg);
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* เพิ่มเงาให้ดูเหมือนลอย */
-    border-radius: 8px; /* ทำให้มุมการ์ดมีความโค้ง */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
   }
   
   
   .card-back {
     color: #fff;
-    /* display: flex; */
-    /* align-items: center;
-    justify-content: center; */
     font-size: 24px;
     transform: rotateY(180deg);
     padding: 10px 10px;
@@ -83,9 +88,9 @@
     width: 250px;
   }
   .product-image {
-    width: 100%;   /* ปรับให้รูปเต็มความกว้างของการ์ด */
-    height: 100%;  /* ปรับให้รูปเต็มความสูงของการ์ด */
-    object-fit: cover; /* ปรับให้รูปเต็มพื้นที่โดยไม่เสียสัดส่วน */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     border-radius: 8px;
   }
   :focus {
@@ -139,9 +144,6 @@
     left: 50%;
     transform: translate(245%, 0%);
   }
-
-
-  /* From Uiverse.io by cssbuttons-io */ 
 .cart-btn {
   position: relative;
   border: none;
@@ -152,7 +154,7 @@
   transition: filter 250ms;
   user-select: none;
   touch-action: manipulation;
-  width: 80%;
+  width: 100%;
   margin-left: 5%;
  }
  
@@ -235,7 +237,7 @@
  }
 .head{
   width: 100%;
-  height: 800px;
+  height: 1000px;
   background-image: linear-gradient(to left, #efe9d5, #b0c0ac, #739890, #416e79, #27445d);
   overflow: hidden;
 }
@@ -245,8 +247,7 @@ height: 800px;
 margin-top: 0%;
 margin-left: 10%;
 }
-.header{
-
+.header{  
   width: 100%;
   height: 50px;
   background-color: #EFE9D5;
@@ -572,4 +573,75 @@ strong {
 }
 .sponsor{
   margin-top: 10%;
+}
+@media (min-width: 1921px) and (max-width: 3075px) {
+  .shop-now{
+    position: absolute;
+    top: 50%;
+    left: 65%;
+    transform: translate(50%, -50%);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1.5rem;
+    text-align: center;
+    z-index: 10;
+  }
+  .banner{
+    width: 80%;
+    height: 1000px;
+    margin-top: 0%;
+    margin-left: 10%;
+    }
+  .card {
+      width: calc(15% - 16px); /* 100% / 5 คอลัมน์ - ระยะห่างระหว่างการ์ด */
+      height: 600px;
+      perspective: 1000px;
+      display: flex;
+      flex-direction: column;
+    
+  }
+  .cart-btn {
+    position: relative;
+    border: none;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    outline-offset: 4px;
+    transition: filter 250ms;
+    user-select: none;
+    touch-action: manipulation;
+    width: 80%;
+    margin-left: 10%;
+   }
+   .banner2{
+    width: 100%;
+    height: 1000px;
+  
+  }
+  .section-title{
+    top: 50%; /* กึ่งกลางแนวตั้ง */
+      left: 50%; /* กึ่งกลางแนวนอน */
+      transform: translate(48%, 50%);
+      margin-bottom: 30px;
+  }
+  .input-containerx {
+    margin-left: 80%;
+    width: 250px;
+    position: relative;
+  }
+  
+
+  .nav-linkss {
+    list-style: none;
+    margin-top: 0px;
+    padding: 0;
+    display: flex;
+    gap: 100px;
+    margin-top: 10px;
+    margin-left: -30%;
+  }
+  
+  
+  
 }

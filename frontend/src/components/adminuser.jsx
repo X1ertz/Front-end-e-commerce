@@ -27,22 +27,28 @@ const Adminuser = () => {
       console.error("Error loading users:", error);
     }
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      if (editing) {
-        await saveUser(form, editing);
-      } else {
-        await addUser(form);
+      const updatedForm = { ...form };
+  
+      if (!updatedForm.password.trim()) {
+        delete updatedForm.password; // ❌ ถ้า password เป็นค่าว่าง ให้ลบออก
       }
+  
+      if (editing) {
+        await saveUser(updatedForm, editing);
+      } else {
+        await addUser(updatedForm);
+      }
+  
       loadUsers();
       resetForm();
     } catch (error) {
       console.error("Error saving user:", error);
     }
   };
-
+  
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this user?")) {
       try {
@@ -55,22 +61,29 @@ const Adminuser = () => {
   };
 
   const handleEdit = (user) => {
-    setForm(user);
+    setForm({
+      id: user.id,
+      username: user.username,
+      email: user.email,
+      password: "",
+      role: user.role,
+      adress: user.adress,
+    });
     setEditing(true);
-    setShowForm(true); // แสดงฟอร์มเมื่อแก้ไข
+    setShowForm(true);
   };
+  
 
   const resetForm = () => {
     setForm({ id: null, username: "", email: "", password: "", role: "member", adress: "" });
     setEditing(false);
-    setShowForm(false); // ซ่อนฟอร์มเมื่อรีเซ็ต
+    setShowForm(false);
   };
 
   return (
     <div className="admin-panel">
       <h2>Admin Panel</h2>
       
-      {/* ปุ่มเปิดฟอร์ม */}
       {!showForm && (
         <button className="show-form-btn" onClick={() => setShowForm(true)}><div tabindex="0" class="plusButton">
         <svg class="plusIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
@@ -81,12 +94,17 @@ const Adminuser = () => {
       </div></button>
       )}
 
-      {/* ฟอร์มแสดง/ซ่อนตามค่า showForm */}
       {showForm && (
         <form className="admin-form" onSubmit={handleSubmit}>
           <input type="text" placeholder="Username" value={form.username} onChange={(e) => setForm({ ...form, username: e.target.value })} required />
           <input type="email" placeholder="Email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} required />
-          <input type="password" placeholder="Password" value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} required={!editing} />
+          <input
+            type="password"
+            placeholder="Password"
+            value={form.password}
+            onChange={(e) => setForm({ ...form, password: e.target.value })}
+            required={!editing}
+          />
           <select value={form.role} onChange={(e) => setForm({ ...form, role: e.target.value })}>
             <option value="member">Member</option>
             <option value="admin">Admin</option>

@@ -15,13 +15,18 @@ const Adminorder = () => {
     const [selectedProducts, setSelectedProducts] = useState([]);
     const [quantities, setQuantities] = useState([]);
     const [message, setMessage] = useState('');
-    const [discountId, setDiscountId] = useState(null);  // State for storing discount ID
-    const [image, setImage] = useState(null);  // State for storing image
-
+    const [discountId, setDiscountId] = useState(null); 
+    const [image, setImage] = useState(null);
+    const [searchTerm, setSearchTerm] = useState("");  
+    const filteredOrders = orders.filter(order => 
+        order.id.toString().includes(searchTerm) || 
+        order.userid.toString().includes(searchTerm) ||
+        order.status.toLowerCase().includes(searchTerm.toLowerCase())
+    );
     useEffect(() => {
         fetchOrders();
         fetchProductList();
-        fetchDiscountCodesList();  // Fetch discount codes
+        fetchDiscountCodesList(); 
     }, []);
 
     const fetchOrders = async () => {
@@ -46,7 +51,7 @@ const Adminorder = () => {
 
     const fetchDiscountCodesList = async () => {
         try {
-            const discountData = await fetchDiscountCodes();  // Fetch discount codes
+            const discountData = await fetchDiscountCodes(); 
             setDiscounts(discountData);
         } catch (error) {
             console.error('Error fetching discount codes:', error);
@@ -82,14 +87,14 @@ const Adminorder = () => {
         const file = e.target.files[0];
         if (file) {
             console.log("Image selected:", file);
-            setImage(file);  // ตรวจสอบให้แน่ใจว่าไฟล์ถูกเก็บไว้ใน state
+            setImage(file); 
         }
     };
     const handleDeleteOrder = async (orderId) => {
         try {
-            // เรียก API เพื่อลบคำสั่งซื้อ
+          
             await deleteOrder(orderId);
-            // รีเฟรชข้อมูลคำสั่งซื้อหลังจากลบ
+          
             setOrders(orders.filter(order => order.id !== orderId));
             alert('คำสั่งซื้อลบเรียบร้อยแล้ว');
         } catch (error) {
@@ -111,7 +116,7 @@ const Adminorder = () => {
                     quantity: quantities[index]
                 })),
                 discountCode: discountId,
-                image, // image คือไฟล์ที่ได้รับจากผู้ใช้
+                image,
             };
     
             // สร้าง FormData object
@@ -121,29 +126,29 @@ const Adminorder = () => {
             formData.append("shippingAddress", newOrder.shippingAddress);
             formData.append("discountCode", newOrder.discountCode);
     
-            // เพิ่ม selectedProducts และ quantities ไปใน FormData
+           
             newOrder.products.forEach((item) => {
-                formData.append("selectedProducts[]", item.productId);  // ส่งในรูปแบบ array
-                formData.append("quantities[]", item.quantity);        // ส่งในรูปแบบ array
+                formData.append("selectedProducts[]", item.productId); 
+                formData.append("quantities[]", item.quantity);       
             });            
     
-            // ถ้ามีไฟล์ image ให้เพิ่มลงใน FormData
+
             if (newOrder.image && newOrder.image instanceof File) {
-                formData.append("image", newOrder.image); // เพิ่มไฟล์ที่ได้รับจากผู้ใช้
+                formData.append("image", newOrder.image); 
             }
     
-            // ตรวจสอบข้อมูลที่ส่งไป
+         
             for (let pair of formData.entries()) {
                 console.log(`${pair[0]}: ${pair[1]}`);
             }
     
-            // ส่งข้อมูลไปที่ API
+           
             await createOrder(formData);
     
-            // แจ้งว่าเพิ่มคำสั่งซื้อสำเร็จ
+         
             setMessage('คำสั่งซื้อถูกเพิ่มเรียบร้อยแล้ว');
             setShowForm(false);
-            fetchOrders(); // รีเฟรชรายการคำสั่งซื้อ
+            fetchOrders(); 
     
         } catch (error) {
             setMessage('เกิดข้อผิดพลาดในการเพิ่มคำสั่งซื้อ');
@@ -160,6 +165,15 @@ const Adminorder = () => {
             <button className="admin-add-order-btn" onClick={() => setShowForm(true)}>
                 Add New Order
             </button>
+            <div className="group">
+                <input
+                    type="text"
+                    placeholder="🔍 Search bar"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="admin-search-input"
+                />
+            </div>
 
             {showForm && (
                 <div className="admin-popup-overlay" onClick={() => setShowForm(false)}>
@@ -205,7 +219,7 @@ const Adminorder = () => {
                                 />
                             </div>
 
-                            {/* Image Upload */}
+
                             <div className="admin-form-group">
                                 <label className="admin-form-label">Upload Image:</label>
                                 <input 
@@ -249,12 +263,11 @@ const Adminorder = () => {
                                 </button>
                             </div>
 
-                            {/* Discount Code Dropdown */}
                             <div className="admin-form-group">
                                 <label className="admin-form-label">Discount Code:</label>
                                 <select
-                                    value={discountId}  // Use discount ID here
-                                    onChange={(e) => setDiscountId(e.target.value)}  // Update discount ID state
+                                    value={discountId}
+                                    onChange={(e) => setDiscountId(e.target.value)}
                                     className="admin-select"
                                 >
                                     <option value="">Select Discount Code</option>
@@ -283,27 +296,48 @@ const Adminorder = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {orders.map((order, index) => (
+                    {filteredOrders.map((order, index) => (
                         <tr key={order.id} className={index % 2 === 0 ? 'admin-even-row' : 'admin-odd-row'}>
                             <td>{order.id}</td>
                             <td>{order.userid}</td>
-                            <td className="admin-status">{order.status}</td>
+                            <td
+                                className="admin-status"
+                                style={{
+                                    backgroundColor: order.status === "Pending" ? "#ffcc00"
+                                        : order.status === "Processing" ? "#17a2b8"
+                                            : order.status === "Shipped" ? "#6f42c1"
+                                                : order.status === "Delivered" ? "#28a745"
+                                                    : order.status === "Cancelled" ? "#dc3545"
+                                                        : "#ccc",
+                                    color: "white",
+                                    padding: "10px 10px",
+                                    borderRadius: "5px",
+                                    textAlign: "center",
+                                    display: "inline-block",
+                                    minWidth: "100px",
+                                    marginLeft:"35%",
+                                    marginTop:"3%"
+                                }}
+                            >
+                                {order.status}
+                            </td>
                             <td>
                                 <Link to={`/orders/${order.id}`} className="admin-view-btn">
                                     View Details
                                 </Link>
                             </td>
                             <td>
-                            <button 
-                                    onClick={() => handleDeleteOrder(order.id)} 
+                                <button
+                                    onClick={() => handleDeleteOrder(order.id)}
                                     className="admin-delete-btn"
                                 >
                                     Delete
-                            </button>
+                                </button>
                             </td>
                         </tr>
                     ))}
                 </tbody>
+
             </table>
         </div>
     );

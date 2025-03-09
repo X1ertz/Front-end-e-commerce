@@ -1,6 +1,8 @@
 import React from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate,Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '../asset/css/checkout.css';
+import { faCreditCard,faUser, faGear,faPen,faHeart, faShoppingCart,faDoorOpen,faUserShield } from "@fortawesome/free-solid-svg-icons";
 import { useState } from 'react';
 import toastr from 'toastr';
 import 'toastr/build/toastr.min.css'; 
@@ -10,20 +12,25 @@ const Checkout = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { selectedProducts, total, usedDiscount } = location.state || { selectedProducts: [], total: 0, usedDiscount: null };
-
-  // 🛠 กำหนดค่าก่อนใช้
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const userId = storedUser?.id;
-
-  // ✅ แก้ไข: ใช้ userId ได้แล้ว
+  const [isOpen, setIsOpen] = useState(false);
+  const [user, setUser] = useState(null);
   const [selectedOption, setSelectedOption] = useState("");
   const [isEditing, setIsEditing] = useState(false);
   const [address, setAddress] = useState("");
   const [selectedAddress, setSelectedAddress] = useState("");
   const [addresses, setAddresses] = useState(() => JSON.parse(localStorage.getItem(`user_${userId}_addresses`)) || []);
   const [appliedDiscount, setAppliedDiscount] = useState(usedDiscount?.discount_amount || 0);
-  const [paymentProof, setPaymentProof] = useState(null); // 🔹 เก็บไฟล์ที่อัปโหลด
+  const [paymentProof, setPaymentProof] = useState(null); 
 
+  useEffect(() => {
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    if (storedUser) {
+      setUser(storedUser);
+    }
+  }, []);
+  
   useEffect(() => {
     if (!userId) {
       console.warn("⚠️ No user ID found in localStorage");
@@ -32,7 +39,14 @@ const Checkout = () => {
     const storedAddresses = JSON.parse(localStorage.getItem(`user_${userId}_addresses`)) || [];
     setAddresses(storedAddresses);
   }, [userId]);
-
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+  const handleLogout = () => {
+    localStorage.removeItem('user');
+    sessionStorage.removeItem('user');
+    window.location.reload();
+  };
   const handleFileChange = (e) => {
     setPaymentProof(e.target.files[0]);
   };
@@ -108,6 +122,42 @@ const Checkout = () => {
   };
 
   return (
+    <>
+    <nav className="navbar">
+        <ul className="nav-links">
+          <li><Link to="/" >Home</Link></li>
+          <li><Link to="/product" >Shop</Link></li>
+          {user ? (
+            <>
+              <li><Link to="/cart">Cart</Link></li> {/* Display Cart link */}
+              <li><Link to="/heart">Wishlist</Link></li>
+              <li className="user-menu">
+                <span onClick={toggleDropdown} className="dropdown-toggle">
+                  {user.username} <FontAwesomeIcon icon={faUser} />
+                </span>
+                {isOpen && (
+                  <ul className={`dropdown-menu ${isOpen ? 'show' : ''}`}>
+                    {user.role == "admin" && (
+                      <li><Link to="/admin">Admin Panel<FontAwesomeIcon className='icon' icon={faUserShield} /></Link></li>
+                    )}
+                    <li><Link to="/editprofile">Edit<FontAwesomeIcon className='icon' icon={faPen} /></Link></li>
+                    <li><Link to="/cart">Cart<FontAwesomeIcon className='icon' icon={faShoppingCart} /></Link></li>
+                    <li><Link to="/heart">Wishlist<FontAwesomeIcon className='icon' icon={faHeart} /></Link></li>
+                    <li>
+                      <span onClick={handleLogout}>
+                        Logout <FontAwesomeIcon className="icon" icon={faDoorOpen} />
+                      </span>
+                    </li>
+                  </ul>
+                )}
+              </li>
+            </>
+          ) : (
+            <li><Link to="/login">Sign in</Link></li> // Link to login page if the user is not logged in
+          )}
+
+        </ul>
+      </nav>
     <div className="checkout-page-container">
       <h2>Checkout</h2>
       <ul className="checkout-page-items">
@@ -168,7 +218,7 @@ const Checkout = () => {
       </div>
       <button className="checkout-confirm-btn" onClick={handleCheckout}>Confirm Payment</button>
     </div>
-
+    </>
   );
 };
 
