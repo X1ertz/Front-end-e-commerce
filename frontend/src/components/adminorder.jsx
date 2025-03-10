@@ -29,6 +29,8 @@ const Adminorder = () => {
         fetchDiscountCodesList(); 
     }, []);
 
+    
+    
     const fetchOrders = async () => {
         try {
             const data = await getOrders();
@@ -60,9 +62,10 @@ const Adminorder = () => {
 
     const handleAddProductField = () => {
         setSelectedProducts([...selectedProducts, '']);  
-        setQuantities([...quantities, 1]);  
+        setQuantities([...quantities, 1]); 
     };
-
+    
+    
     const handleProductChange = (index, value) => {
         const updatedProducts = [...selectedProducts];
     
@@ -113,13 +116,13 @@ const Adminorder = () => {
                 shippingAddress,
                 products: selectedProducts.map((productId, index) => ({
                     productId,
-                    quantity: quantities[index]
+                    quantity: quantities[index],
                 })),
                 discountCode: discountId,
                 image,
             };
     
-            // สร้าง FormData object
+       
             const formData = new FormData();
             formData.append("username", newOrder.username);
             formData.append("status", newOrder.status);
@@ -234,6 +237,7 @@ const Adminorder = () => {
                                 <label className="admin-form-label">Product(s):</label>
                                 {selectedProducts.map((product, index) => (
                                     <div key={index} className="admin-product-input">
+                       
                                         <select
                                             value={product}
                                             onChange={(e) => handleProductChange(index, e.target.value)}
@@ -247,6 +251,8 @@ const Adminorder = () => {
                                                 </option>
                                             ))}
                                         </select>
+
+                                      
                                         <input
                                             type="number"
                                             value={quantities[index]}
@@ -256,8 +262,10 @@ const Adminorder = () => {
                                             className="admin-input-quantity"
                                             placeholder="Quantity"
                                         />
+
                                     </div>
                                 ))}
+
                                 <button type="button" onClick={handleAddProductField} className="admin-add-product-btn">
                                     + Add Product
                                 </button>

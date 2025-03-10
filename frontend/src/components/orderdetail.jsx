@@ -19,6 +19,7 @@ const OrderDetail = () => {
     const [editingQuantities, setEditingQuantities] = useState({});
     const [showAddProductForm, setShowAddProductForm] = useState(false);
     const [newProduct, setNewProduct] = useState({ productId: '', quantity: 1 });
+
     const base_url = "http://localhost:3000";
 
     useEffect(() => {
@@ -51,6 +52,7 @@ const OrderDetail = () => {
 
         fetchOrderDetails();
     }, [orderId]);
+    
 
     const handleUpdateOrder = async (e) => {
         e.preventDefault();
@@ -124,16 +126,16 @@ const OrderDetail = () => {
 
     const handleAddProduct = async (e) => {
         e.preventDefault();
-        if (!newProduct.productId || newProduct.quantity <= 0) {
+        if (!newProduct.productId || newProduct.quantity <= 0 || !newProduct.size) {
             alert("Please select a product and quantity.");
             return;
         }
         try {
-            const productData = { productid: newProduct.productId, quantity: newProduct.quantity };
-            console.log("Adding product data:", productData);  // Debugging log
+            const productData = { productid: newProduct.productId, quantity: newProduct.quantity ,size: newProduct.size};
+            console.log("Adding product data:", productData);
             const updatedOrder = await addProductToOrder(orderId, productData);
             setOrder(updatedOrder);
-            setNewProduct({ productId: '', quantity: 1 });
+            setNewProduct({ productId: '', quantity: 1 ,size:''});
             window.location.reload();
         } catch (error) {
             console.error('Error adding product:', error.response?.data || error.message);
@@ -175,6 +177,7 @@ const OrderDetail = () => {
                 <>
                     <p className="order-status">Status: {order?.status}</p>
                     <p className="order-status">Shipping: {order?.shippingaddress}</p>
+                    <p className="order-status">Total: ${order?.total}</p>
                     <button className="order-btn-edit" onClick={() => setEditing(true)}>Edit</button>
                 </>
             )}
@@ -243,16 +246,24 @@ const OrderDetail = () => {
             </button>
 
             {showAddProductForm && (
-                <form className="add-product-form" onSubmit={handleAddProduct}>
-                    <label>
-                        Select Product:
-                        <select value={newProduct.productId} onChange={(e) => setNewProduct({ ...newProduct, productId: e.target.value })}>
+    <form className="add-product-form" onSubmit={handleAddProduct}>
+        <label>
+            Select Product:
+            <select
+                value={newProduct.productId}
+                onChange={(e) => {
+                    const selectedProductId = e.target.value;
+                    setNewProduct({ ...newProduct, productId: selectedProductId, size: "" });
+
+                            }}
+                        >
                             <option value="">Select a product</option>
                             {products.map((product) => (
                                 <option key={product.id} value={product.id}>{product.productname}</option>
                             ))}
                         </select>
                     </label>
+
                     <label>
                         Quantity:
                         <input
@@ -262,9 +273,20 @@ const OrderDetail = () => {
                             onChange={(e) => setNewProduct({ ...newProduct, quantity: Number(e.target.value) })}
                         />
                     </label>
+
+                    <label>
+                        Size:
+                        <input
+                            type="text"
+                            value={newProduct.size}
+                            onChange={(e) => setNewProduct({ ...newProduct, size: e.target.value })}
+                            placeholder="Enter size"
+                        />
+                    </label>
                     <button className="order-btn-submit" type="submit">Add Product</button>
                 </form>
             )}
+
         </div>
     );
 };

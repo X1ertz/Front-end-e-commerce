@@ -67,7 +67,7 @@ const Home = () => {
                 {user.role == "admin" && (
                   <li><Link to="/admin">Admin Panel<FontAwesomeIcon className='icon' icon={faUserShield} /></Link></li>
                 )}
-                <li><Link to="/edit-profile">Edit<FontAwesomeIcon className='icon' icon={faPen} /></Link></li>
+                <li><Link to="/editprofile">Edit<FontAwesomeIcon className='icon' icon={faPen} /></Link></li>
                 <li><Link to="/cart">Cart<FontAwesomeIcon className='icon' icon={faShoppingCart} /></Link></li>
                 <li><Link to="/heart">Wishlist<FontAwesomeIcon className='icon' icon={faHeart} /></Link></li>
                 <li>

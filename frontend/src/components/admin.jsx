@@ -26,11 +26,12 @@ const Admin = () => {
     <div className='admin-background'>
       <nav className="navMenu">
         <a href="/">Home</a>
-        <a href="/adminproduct">Products</a>
+        <a href="/adminproduct">Product</a>
         <a href="/adminuser">Users</a>
-        <a href="/admincategory">Categories</a>
         <a href="/adminorder">Orders</a>
         <a href="/Discount">Discount</a>
+        <a href="/report">Report</a>
+        <a href="/admincategory">Category</a>
       </nav>
       <div className="blob"></div>
       </div>

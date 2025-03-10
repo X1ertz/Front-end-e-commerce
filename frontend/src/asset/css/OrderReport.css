@@ -1,0 +1,90 @@
+/* พื้นหลังและ Container */
+.order-report-container {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #ffffff;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+  }
+  
+  /* หัวข้อ */
+  .report-title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* กล่องตาราง */
+  .table-container {
+    overflow-x: auto;
+    border-radius: 8px;
+  }
+  
+  /* ตาราง */
+  .order-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 16px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+
+  
+  .order-table tr:hover {
+    background: #f1f1f1;
+  }
+  
+  /* ช่องตาราง */
+  .order-table td {
+    padding: 10px;
+    color: #555;
+  }
+  
+  /* Order ID */
+  .order-id {
+    font-weight: bold;
+    color: #007bff;
+    text-align: center;
+  }
+  
+  /* สถานะ Order */
+  .status {
+    text-align: center;
+    padding: 6px 12px;
+    font-weight: bold;
+    border-radius: 5px;
+    display: inline-block;
+  }
+  
+  .status.pending {
+    background: #ffc107;
+    color: #212529;
+  }
+  
+  .status.completed {
+    background: #28a745;
+    color: white;
+  }
+  
+
+  .center {
+    text-align: center;
+  }
+  
+  .price {
+    text-align: center;
+    font-weight: bold;
+    color: #007bff;
+  }
+  
+  .discount {
+    text-align: center;
+    font-weight: bold;
+    color: #dc3545;
+  }
+  

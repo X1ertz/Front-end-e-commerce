@@ -16,6 +16,7 @@ import OrderDetail from "./components/orderdetail";
 import Discount from "./components/discount"
 import Admin from "./components/admin"
 import EditProfile from "./components/editprofile";
+import ReportTable from "./components/report";
 const App = () => {
   return (
     <BrowserRouter>
@@ -36,6 +37,7 @@ const App = () => {
         <Route path="/discount" element={<Discount />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/editprofile" element={<EditProfile />} />
+        <Route path="/report" element={<ReportTable />} />
       </Routes>
     </BrowserRouter>
   );
