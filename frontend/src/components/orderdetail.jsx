@@ -234,7 +234,7 @@ const OrderDetail = () => {
                                     )}
                                 </div>
                                 <div className="item-image-container">
-                                    <img className="item-image" src={item.product.imageurl} alt={item.product.productname} />
+                                    <img className="item-image" src={`${base_url}${item.product.imageurl}`} alt={item.product.productname} />
                                 </div>
                                 {deleteMode && (
                                     <button className="delete-btn" onClick={() => handleDeleteItem(item.productid)}>Delete</button>

@@ -15,7 +15,7 @@ const Cart = () => {
   const [appliedDiscount, setAppliedDiscount] = useState(null);
   const [discountCode, setDiscountCode] = useState("");
   const [user, setUser] = useState(null);
-
+  const base_url = "https://back-end-e-commerce-p0si.onrender.com";
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -161,7 +161,7 @@ const Cart = () => {
       <ul className="cart-items">
         {cart.map((item, index) => (
           <li key={index} className="cart-item">
-            <img src={item.imageurl} alt={item.name} className="cart-img" />
+            <img src={`${base_url}${item.imageurl}`} alt={item.name} className="cart-img" />
             <div className="cart-item-details">
               <h3>{item.productname}</h3>
               <p>Size: {item.size}</p>

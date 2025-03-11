@@ -165,7 +165,7 @@ const Checkout = () => {
       <ul className="checkout-page-items">
         {selectedProducts.map((product, index) => (
           <li key={index} className="checkout-page-item">
-            <img src={product.imageurl} alt={product.productname} />
+            <img src={`https://back-end-e-commerce-p0si.onrender.com${product.imageurl}`} alt={product.productname} />
             <div className="checkout-page-item-details">
               <p>{product.productname}</p>
               <p>{product.size}</p>

@@ -1,5 +1,6 @@
 .overflow{
   overflow-x: hidden;
+  overflow-y: hidden;
   width: 100%;
   margin: 0;
   padding: 0;
@@ -248,9 +249,10 @@
 }
 .banner{
 width: 80%;
-height: 800px;
+height: 1000px;
 margin-top: 0%;
 margin-left: 10%;
+overflow-y: none;
 }
 .header{  
   width: 100%;
@@ -398,7 +400,7 @@ margin-left: 10%;
   font-size: 1.5rem;
   text-align: center;
   z-index: 10;
-
+  
 }
 .btn-shop {
   display: flex;
