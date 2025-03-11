@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams,useNavigate } from 'react-router-dom';
 import { getOrderById, getUserById, updateOrder, deleteOrderItem, updateOrderItemQuantity, getDiscountById, addProductToOrder,fetchProducts,updateStockForProduct } from '../services/api';
 import "../asset/css/orderdetail.css";
+import { div } from 'framer-motion/client';
 
 const OrderDetail = () => {
     const { orderId } = useParams();
     const [order, setOrder] = useState(null);
     const [username, setUsername] = useState("");
+    const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [showPopup, setShowPopup] = useState(false);
     const [editing, setEditing] = useState(false);
@@ -144,151 +146,155 @@ const OrderDetail = () => {
     
 
     return (
-        <div className="order-info-container">
-            <h2>Order ID: {order?.id}</h2>
+        <>
             <div>
-                <p className="order-status">Customer Name: {username || "Unknown"}</p>
-                <p className="order-status">Customer Email: {email || "Unknown"}</p>
-                <p className="order-status">
-                    Discount: {discount.discount_name || "Not used"}
-                    <span>Percentage: {discount.percentage || "Not used"}</span>
-                </p>
+                <button className="back-btn-pd" onClick={() => navigate(-1)}>Back</button>
             </div>
-            {editing ? (
-                <form className="edit-form" onSubmit={handleUpdateOrder}>
-                    <label>
-                        Status:
-                        <select value={status} onChange={(e) => setStatus(e.target.value)}>
-                            <option value="Pending">Pending</option>
-                            <option value="Processing">Processing</option>
-                            <option value="Shipped">Shipped</option>
-                            <option value="Delivered">Delivered</option>
-                            <option value="Cancelled">Cancelled</option>
-                        </select>
-                    </label>
-                    <label>
-                        Shipping Address:
-                        <input type="text" value={shippingAddress} onChange={(e) => setShippingAddress(e.target.value)} />
-                    </label>
-                    <button className="order-btn-save" type="submit">Save</button>
-                    <button className="order-btn-cancel" type="button" onClick={() => setEditing(false)}>Cancel</button>
-                </form>
-            ) : (
-                <>
-                    <p className="order-status">Status: {order?.status}</p>
-                    <p className="order-status">Shipping: {order?.shippingaddress}</p>
-                    <p className="order-status">Total: ${order?.total}</p>
-                    <button className="order-btn-edit" onClick={() => setEditing(true)}>Edit</button>
-                </>
-            )}
-
-            <button className="order-btn-proof" onClick={() => setShowPopup(true)}>Show Payment Proof</button>
-
-            {showPopup && (
-                <div className={`popup-overlay ${showPopup ? 'show' : ''}`} onClick={() => setShowPopup(false)}>
-                    <div className={`popup-content ${showPopup ? 'show' : ''}`} onClick={(e) => e.stopPropagation()}>
-                        <span className="close-btn" onClick={() => setShowPopup(false)}>✖</span>
-                        <img src={`${base_url}${order?.paymentproof}`} alt="Payment Proof" className="popup-image" />
-                    </div>
+            <div className="order-info-container">
+                <h2>Order ID: {order?.id}</h2>
+                <div>
+                    <p className="order-status">Customer Name: {username || "Unknown"}</p>
+                    <p className="order-status">Customer Email: {email || "Unknown"}</p>
+                    <p className="order-status">
+                        Discount: {discount.discount_name || "Not used"}
+                        <span>Percentage: {discount.percentage || "Not used"}</span>
+                    </p>
                 </div>
-            )}
-
-
-            <h3 className="order-items-header">Items:</h3>
-            <button className='order-btn-toggle-delete' onClick={() => setDeleteMode(prev => !prev)}>
-                {deleteMode ? 'Disable Delete Mode' : 'Enable Delete Mode'}
-            </button>
-
-            {order?.orderdetails && order.orderdetails.length > 0 ? (
-                <ul className="order-list">
-                    {order.orderdetails.map((item) => (
-                        <li key={item.id} className="order-list-item">
-                            <div className="item-details">
-                                <p><span className="item-label">Product Name:</span> {item.product.productname}</p>
-                                <p><span className="item-label">Size:</span> {item.size}</p>
-                                <p><span className="item-label">Unit Price:</span> ${item.unitprice}</p>
-                                {editingQuantities[item.productid] ? (
-                                    <>
-                                        <label>
-                                            <span className="item-label">Quantity:</span>
-                                            <input
-                                                type="number"
-                                                min="1"
-                                                value={quantityUpdates[item.productid]}
-                                                onChange={(e) => handleQuantityChange(item.productid, e.target.value)}
-                                            />
-                                        </label>
-                                        <button className="save-quantity-btn" onClick={() => handleUpdateQuantity(item.productid)}>Save</button>
-                                        <button className="cancel-quantity-btn" onClick={() => setEditingQuantities(prev => ({ ...prev, [item.productid]: false }))}>Cancel</button>
-                                    </>
-                                ) : (
-                                    <>
-                                        <p><span className="item-label">Quantity:</span> {item.quantity}</p>
-                                        <button className="edit-quantity-btn" onClick={() => setEditingQuantities(prev => ({ ...prev, [item.productid]: true }))}>Edit Quantity</button>
-                                    </>
+                {editing ? (
+                    <form className="edit-form" onSubmit={handleUpdateOrder}>
+                        <label>
+                            Status:
+                            <select value={status} onChange={(e) => setStatus(e.target.value)}>
+                                <option value="Pending">Pending</option>
+                                <option value="Processing">Processing</option>
+                                <option value="Shipped">Shipped</option>
+                                <option value="Delivered">Delivered</option>
+                                <option value="Cancelled">Cancelled</option>
+                            </select>
+                        </label>
+                        <label>
+                            Shipping Address:
+                            <input type="text" value={shippingAddress} onChange={(e) => setShippingAddress(e.target.value)} />
+                        </label>
+                        <button className="order-btn-save" type="submit">Save</button>
+                        <button className="order-btn-cancel" type="button" onClick={() => setEditing(false)}>Cancel</button>
+                    </form>
+                ) : (
+                    <>
+                        <p className="order-status">Status: {order?.status}</p>
+                        <p className="order-status">Shipping: {order?.shippingaddress}</p>
+                        <p className="order-status">Total: ${order?.total}</p>
+                        <button className="order-btn-edit" onClick={() => setEditing(true)}>Edit</button>
+                    </>
+                )}
+    
+                <button className="order-btn-proof" onClick={() => setShowPopup(true)}>Show Payment Proof</button>
+    
+                {showPopup && (
+                    <div className={`popup-overlay ${showPopup ? 'show' : ''}`} onClick={() => setShowPopup(false)}>
+                        <div className={`popup-content ${showPopup ? 'show' : ''}`} onClick={(e) => e.stopPropagation()}>
+                            <span className="close-btn" onClick={() => setShowPopup(false)}>✖</span>
+                            <img src={`${base_url}${order?.paymentproof}`} alt="Payment Proof" className="popup-image" />
+                        </div>
+                    </div>
+                )}
+    
+                <h3 className="order-items-header">Items:</h3>
+                <button className='order-btn-toggle-delete' onClick={() => setDeleteMode(prev => !prev)}>
+                    {deleteMode ? 'Disable Delete Mode' : 'Enable Delete Mode'}
+                </button>
+    
+                {order?.orderdetails && order.orderdetails.length > 0 ? (
+                    <ul className="order-list">
+                        {order.orderdetails.map((item) => (
+                            <li key={item.id} className="order-list-item">
+                                <div className="item-details">
+                                    <p><span className="item-label">Product Name:</span> {item.product.productname}</p>
+                                    <p><span className="item-label">Size:</span> {item.size}</p>
+                                    <p><span className="item-label">Unit Price:</span> ${item.unitprice}</p>
+                                    {editingQuantities[item.productid] ? (
+                                        <>
+                                            <label>
+                                                <span className="item-label">Quantity:</span>
+                                                <input
+                                                    type="number"
+                                                    min="1"
+                                                    value={quantityUpdates[item.productid]}
+                                                    onChange={(e) => handleQuantityChange(item.productid, e.target.value)}
+                                                />
+                                            </label>
+                                            <button className="save-quantity-btn" onClick={() => handleUpdateQuantity(item.productid)}>Save</button>
+                                            <button className="cancel-quantity-btn" onClick={() => setEditingQuantities(prev => ({ ...prev, [item.productid]: false }))}>Cancel</button>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <p><span className="item-label">Quantity:</span> {item.quantity}</p>
+                                            <button className="edit-quantity-btn" onClick={() => setEditingQuantities(prev => ({ ...prev, [item.productid]: true }))}>Edit Quantity</button>
+                                        </>
+                                    )}
+                                </div>
+                                <div className="item-image-container">
+                                    <img className="item-image" src={item.product.imageurl} alt={item.product.productname} />
+                                </div>
+                                {deleteMode && (
+                                    <button className="delete-btn" onClick={() => handleDeleteItem(item.productid)}>Delete</button>
                                 )}
-                            </div>
-                            <div className="item-image-container">
-                                <img className="item-image" src={item.product.imageurl} alt={item.product.productname} />
-                            </div>
-                            {deleteMode && (
-                                <button className="delete-btn" onClick={() => handleDeleteItem(item.productid)}>Delete</button>
-                            )}
-                        </li>
-                    ))}
-                </ul>
-            ) : (
-                <p>No items found.</p>
-            )}
-
-            <button className="order-btn-add" onClick={() => setShowAddProductForm(!showAddProductForm)}>
-                {showAddProductForm ? 'Cancel' : 'Add Product'}
-            </button>
-
-            {showAddProductForm && (
-    <form className="add-product-form" onSubmit={handleAddProduct}>
-        <label>
-            Select Product:
-            <select
-                value={newProduct.productId}
-                onChange={(e) => {
-                    const selectedProductId = e.target.value;
-                    setNewProduct({ ...newProduct, productId: selectedProductId, size: "" });
-
-                            }}
-                        >
-                            <option value="">Select a product</option>
-                            {products.map((product) => (
-                                <option key={product.id} value={product.id}>{product.productname}</option>
-                            ))}
-                        </select>
-                    </label>
-
-                    <label>
-                        Quantity:
-                        <input
-                            type="number"
-                            min="1"
-                            value={newProduct.quantity}
-                            onChange={(e) => setNewProduct({ ...newProduct, quantity: Number(e.target.value) })}
-                        />
-                    </label>
-
-                    <label>
-                        Size:
-                        <input
-                            type="text"
-                            value={newProduct.size}
-                            onChange={(e) => setNewProduct({ ...newProduct, size: e.target.value })}
-                            placeholder="Enter size"
-                        />
-                    </label>
-                    <button className="order-btn-submit" type="submit">Add Product</button>
-                </form>
-            )}
-
-        </div>
+                            </li>
+                        ))}
+                    </ul>
+                ) : (
+                    <p>No items found.</p>
+                )}
+    
+                <button className="order-btn-add" onClick={() => setShowAddProductForm(!showAddProductForm)}>
+                    {showAddProductForm ? 'Cancel' : 'Add Product'}
+                </button>
+    
+                {showAddProductForm && (
+                    <form className="add-product-form" onSubmit={handleAddProduct}>
+                        <label>
+                            Select Product:
+                            <select
+                                value={newProduct.productId}
+                                onChange={(e) => {
+                                    const selectedProductId = e.target.value;
+                                    setNewProduct({ ...newProduct, productId: selectedProductId, size: "" });
+                                }}
+                            >
+                                <option value="">Select a product</option>
+                                {products.map((product) => (
+                                    <option key={product.id} value={product.id}>{product.productname}</option>
+                                ))}
+                            </select>
+                        </label>
+    
+                        <label>
+                            Quantity:
+                            <input
+                                type="number"
+                                min="1"
+                                value={newProduct.quantity}
+                                onChange={(e) => setNewProduct({ ...newProduct, quantity: Number(e.target.value) })}
+                            />
+                        </label>
+    
+                        <label>
+                            Size:
+                            <input
+                                type="text"
+                                value={newProduct.size}
+                                onChange={(e) => setNewProduct({ ...newProduct, size: e.target.value })}
+                                placeholder="Enter size"
+                            />
+                        </label>
+                        <button className="order-btn-submit" type="submit">Add Product</button>
+                    </form>
+                )}
+    
+            </div>
+        </>
     );
+    
 };
 export default OrderDetail;
 

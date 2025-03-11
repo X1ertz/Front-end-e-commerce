@@ -125,11 +125,12 @@ const Checkout = () => {
     <>
     <nav className="navbar">
         <ul className="nav-links">
+          <li><Link to="/cart" >Back</Link></li>
           <li><Link to="/" >Home</Link></li>
           <li><Link to="/product" >Shop</Link></li>
           {user ? (
             <>
-              <li><Link to="/cart">Cart</Link></li> {/* Display Cart link */}
+              <li><Link to="/cart">Cart</Link></li>
               <li><Link to="/heart">Wishlist</Link></li>
               <li className="user-menu">
                 <span onClick={toggleDropdown} className="dropdown-toggle">
@@ -153,12 +154,13 @@ const Checkout = () => {
               </li>
             </>
           ) : (
-            <li><Link to="/login">Sign in</Link></li> // Link to login page if the user is not logged in
+            <li><Link to="/login">Sign in</Link></li> 
           )}
 
         </ul>
       </nav>
     <div className="checkout-page-container">
+      
       <h2>Checkout</h2>
       <ul className="checkout-page-items">
         {selectedProducts.map((product, index) => (
@@ -179,8 +181,8 @@ const Checkout = () => {
         {isEditing ? (
           <div className="address-form">
             <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} placeholder="Enter your address" />
-            <button onClick={handleAddAddress}>Add Address</button>
-            <button onClick={() => setIsEditing(false)}>Cancel</button>
+            <button className="address-btn"onClick={handleAddAddress}>Add Address</button>
+            <button className="address-cancle-btn" onClick={() => setIsEditing(false)}>Cancel</button>
           </div>
         ) : (
           <>

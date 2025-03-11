@@ -60,29 +60,16 @@
   border-radius: 4px;
 }
 
-.cart-item-actions button {
-  background: #ff4d4d;
-  color: white;
-  border: none;
-  padding: 8px 12px;
-  cursor: pointer;
-  border-radius: 4px;
-  transition: 0.3s;
-}
-
-.cart-item-actions button:hover {
-  background: #cc0000;
-}
 
 .cart-summary {
   text-align: center;
   margin-top: 20px;
   position: relative;
   display: flex;
-  flex-direction: column; /* Stack children vertically */
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 10px; /* Adds spacing between the h3 and the button */
+  gap: 10px;
 }
 
 
@@ -91,20 +78,7 @@
   margin-bottom: 15px;
 }
 
-.cart-summary button {
-  background: #28a745;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  font-size: 16px;
-  border-radius: 4px;
-  transition: 0.3s;
-}
 
-.cart-summary button:hover {
-  background: #218838;
-}
 .discount-btn {
   --color: #0077ff;
   font-family: inherit;
@@ -200,7 +174,7 @@
   position: relative;
   padding: 12px 24px;
   font-size: 16px;
-  background: #22c55e; /* Green background */
+  background: #22c55e; 
   color: white;
   border: none;
   border-radius: 8px;
@@ -214,24 +188,24 @@
 }
 
 .checkout-btn:hover {
-  background: #16a34a; /* Darker green on hover */
-  transform: scale(1.1); /* Scale up the button on hover */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Add shadow */
+  background: #16a34a; 
+  transform: scale(1.1); 
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
 }
 
 .checkout-btn:active {
-  transform: scale(1); /* Reset scale when button is clicked */
+  transform: scale(1); 
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .checkout-btn:disabled {
-  background: #b2f5ea; /* Light green when disabled */
+  background: #b2f5ea; 
   cursor: not-allowed;
   opacity: 0.7;
 }
 
-/* For animation */
+
 @keyframes buttonPulse {
   0% {
     transform: scale(1);
@@ -245,7 +219,7 @@
 }
 
 .checkout-btn:hover {
-  animation: buttonPulse 1s infinite; /* Adding pulse animation on hover */
+  animation: buttonPulse 1s infinite; 
 }
 
 .select input {
@@ -268,13 +242,13 @@
   position: relative;
   top: 0;
   left: 0;
-  height: 0.6em; /* Increase the size of the checkmark */
-  width: 0.6em; /* Increase the size of the checkmark */
+  height: 0.6em;
+  width: 0.6em;
   border-radius: 50%;
   background: #000000a6;
   transition: all 0.2s ease;
   display: inline-block;
-  opacity: 0.6; /* Adjust opacity */
+  opacity: 0.6;
 }
 
 .select .checkmark {
@@ -283,7 +257,7 @@
 
 .select input:checked ~ .checkmark {
   background: linear-gradient(144deg, #22c55e, #16a34a 50%, #10b981);
-  opacity: 1; /* Make it fully visible when checked */
+  opacity: 1;
   transition: all 0.2s ease;
 }
 
@@ -341,4 +315,40 @@
 .input-discount:focus {
   color: black;
   outline-color: lightcoral;
+}
+.remove-item {
+  background-color: #ff4d4d; 
+  color: white; 
+  border: none; 
+  padding: 8px 15px;
+  font-size: 14px;
+  cursor: pointer; 
+  border-radius: 5px;
+  transition: background-color 0.3s ease; 
+}
+
+.remove-item:hover {
+  background-color: #e60000; 
+}
+
+.remove-item:focus {
+  outline: none; 
+}
+.apply-discount-btn {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.apply-discount-btn:hover {
+  background-color: #45a049;
+}
+
+.apply-discount-btn:active {
+  background-color: #388e3c;
 }

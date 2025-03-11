@@ -91,7 +91,7 @@
   transform: translateY(-3px);
 }
 
-/* 📱 Responsive */
+
 @media (max-width: 600px) {
   .checkout-page-container {
     max-width: 90%;
@@ -235,7 +235,7 @@
 .checkout-confirm-btn:hover {
   background-color: #218838;
 }
-/* 📌 Section: ฟอร์มเพิ่มที่อยู่ */
+
 .address-form {
   display: flex;
   flex-direction: column;
@@ -262,31 +262,42 @@
   outline: none;
 }
 
-/* 📌 ปุ่มในฟอร์ม */
-.address-form button {
-  padding: 10px 15px;
-  font-size: 16px;
-  font-weight: bold;
-  border: none;
-  border-radius: 6px;
+.address-btn {
+  background-color: #007bff; 
+  color: white; 
+  border: none; 
+  padding: 10px 20px; 
+  font-size: 16px; 
+  cursor: pointer; 
+  border-radius: 5px;
+  transition: background-color 0.3s ease; 
+}
+
+.address-btn:hover {
+  background-color: #0056b3; 
+}
+
+.address-btn:active {
+  background-color: #004085; 
+}
+
+
+.address-cancle-btn {
+  background-color: #f44336; 
+  color: white; 
+  border: none; 
+  padding: 10px 20px; 
+  font-size: 16px; 
   cursor: pointer;
-  transition: background 0.3s ease-in-out;
+  border-radius: 5px; 
+  transition: background-color 0.3s ease; 
 }
 
-.address-form button:first-of-type {
-  background-color: #28a745;
-  color: white;
+.address-cancle-btn:hover {
+  background-color: #d32f2f;
 }
 
-.address-form button:first-of-type:hover {
-  background-color: #218838;
+.address-cancle-btn:active {
+  background-color: #b71c1c;
 }
 
-.address-form button:last-of-type {
-  background-color: #dc3545;
-  color: white;
-}
-
-.address-form button:last-of-type:hover {
-  background-color: #c82333;
-}

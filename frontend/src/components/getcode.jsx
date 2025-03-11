@@ -43,7 +43,6 @@ const GetCode = () => {
                 <p className="discount-name">{codeObj.discount_name}</p>
                   <p className="discount-name">Discount: {codeObj.percentage}% off product price</p>
                   <p className="min-spend">Minimum spend: 0 Baht</p>
-                  {/* แสดงข้อมูลส่วนลดโดยไม่มีปุ่ม */}
                 </div>
               </div>
             ))}

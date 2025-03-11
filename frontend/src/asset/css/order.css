@@ -103,8 +103,6 @@
     text-align: center;
     margin-bottom: 20px;
 }
-
-/* Add New Order Button */
 .admin-add-order-btn {
     display: block;
     width: 200px;
@@ -124,7 +122,7 @@
     background-color: #357ABD;
 }
 
-/* Order Table */
+
 .admin-order-table {
     width: 100%;
     border-collapse: collapse;
@@ -157,7 +155,6 @@
     color: #FFA500;
 }
 
-/* Popup Styles */
 .admin-popup-overlay {
     position: fixed;
     top: 0;
@@ -212,7 +209,7 @@
     margin-bottom: 20px;
 }
 
-/* Form Styles */
+
 .admin-form {
     display: flex;
     flex-direction: column;
@@ -251,14 +248,14 @@
     background-color: #357ABD;
 }
 
-/* Message styles */
+
 .admin-error-message {
     font-size: 14px;
     color: #FF6347;
     text-align: center;
     margin-top: 15px;
 }
-/* CSS สำหรับฟอร์มและการจัดแต่ง */
+
 .admin-order-dashboard-container {
     padding: 20px;
     background-color: #f9f9f9;

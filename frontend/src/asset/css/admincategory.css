@@ -26,20 +26,7 @@ h2 {
     border-radius: 5px;
 }
 
-.category-form button {
-    padding: 10px;
-    font-size: 16px;
-    color: #fff;
-    background: #007bff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
 
-.category-form button:hover {
-    background: #0056b3;
-}
 
 .cancel-btn {
     background: #dc3545;
@@ -75,11 +62,58 @@ h2 {
     cursor: pointer;
 }
 
-.delete-btn {
+.c-delete-btn {
     background: #dc3545;
     color: white;
-    padding: 5px 10px;
+    padding: 11px 10px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+}
+.add-c-btn {
+    background-color: #15a102;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-transform: uppercase;
+}
+
+.add-c-btn:hover {
+    background-color: #01366e;
+}
+
+.add-c-btn:active {
+    background-color: #01366e;
+}
+
+.add-c-btn:focus {
+    outline: none;
+}
+
+.cancel-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 0px;
+    transition: background-color 0.3s ease;
+}
+
+.cancel-btn:hover {
+    background-color: #c82333;
+}
+
+.cancel-btn:active {
+    background-color: #bd2130;
+}
+
+.cancel-btn:focus {
+    outline: none;
 }

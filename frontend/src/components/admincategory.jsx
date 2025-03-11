@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { fetchCategories, addCategory, updateCategory, deleteCategory } from "../services/api";
 import "../asset/css/admincategory.css";
-
+import { useNavigate } from 'react-router-dom';
 const Admincategory = () => {
     const [categories, setCategories] = useState([]);
     const [form, setForm] = useState({ id: null, Categoryname: "" });
     const [editing, setEditing] = useState(false);
-
+    const navigate = useNavigate();
     useEffect(() => {
         loadCategories();
     }, []);
@@ -60,7 +60,9 @@ const Admincategory = () => {
     };
 
     return (
+        
         <div className="category-container">
+            <button className="back-btn-pd" onClick={() => navigate(-1)}>Back</button>
             <h2>Category Management</h2>
 
   
@@ -72,7 +74,7 @@ const Admincategory = () => {
                     onChange={(e) => setForm({ ...form, Categoryname: e.target.value })}
                     required
                 />
-                <button type="submit">{editing ? "Update Category" : "Add Category"}</button>
+                <button className="add-c-btn"type="submit">{editing ? "Update Category" : "Add Category"}</button>
                 {editing && <button type="button" onClick={resetForm} className="cancel-btn">Cancel</button>}
             </form>
 
@@ -92,7 +94,7 @@ const Admincategory = () => {
                             <td>{category.Categoryname}</td>
                             <td>
                                 <button className="edit-btn" onClick={() => handleEdit(category)}>Edit</button>
-                                <button className="delete-btn" onClick={() => handleDelete(category.id)}>Delete</button>
+                                <button className="c-delete-btn" onClick={() => handleDelete(category.id)}>Delete</button>
                             </td>
                         </tr>
                     ))}

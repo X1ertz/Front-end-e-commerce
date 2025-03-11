@@ -1,4 +1,4 @@
-/* พื้นหลังและ Container */
+
 .order-report-container {
     max-width: 1200px;
     margin: 50px auto;
@@ -8,7 +8,7 @@
     border-radius: 10px;
   }
   
-  /* หัวข้อ */
+
   .report-title {
     text-align: center;
     font-size: 28px;
@@ -17,13 +17,12 @@
     margin-bottom: 20px;
   }
   
-  /* กล่องตาราง */
+
   .table-container {
     overflow-x: auto;
     border-radius: 8px;
   }
   
-  /* ตาราง */
   .order-table {
     width: 100%;
     border-collapse: collapse;
@@ -39,20 +38,19 @@
     background: #f1f1f1;
   }
   
-  /* ช่องตาราง */
   .order-table td {
     padding: 10px;
     color: #555;
   }
   
-  /* Order ID */
+
   .order-id {
     font-weight: bold;
     color: #007bff;
     text-align: center;
   }
   
-  /* สถานะ Order */
+
   .status {
     text-align: center;
     padding: 6px 12px;
@@ -87,4 +85,26 @@
     font-weight: bold;
     color: #dc3545;
   }
-  
+  .more-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.more-btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.more-btn:active {
+    background-color: #004085;
+}
+
+.more-btn:focus {
+    outline: none;
+}

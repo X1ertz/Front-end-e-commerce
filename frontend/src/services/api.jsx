@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+
 const API_URL = 'http://localhost:3000';
 
 export const sendDataToBackend = async (data) => {
@@ -65,7 +66,7 @@ export const fetchDiscountCodes = async () => {
   }
 };
 export const sendOrderToBackend = async (orderData) => {
-  console.log("📌 Sending order data:", JSON.stringify(orderData, null, 2)); // Debug
+  console.log("📌 Sending order data:", JSON.stringify(orderData, null, 2));
   try {
     const response = await axios.post(`${API_URL}/order`, orderData);
     console.log("✅ Order placed successfully!", response.data);
@@ -106,7 +107,7 @@ export const checkDiscountCode = async (code) => {
 
 export const fetchUsers = async () => {
   try {
-    const response = await axios.get("http://localhost:3000/users");
+    const response = await axios.get(`${API_URL}/users`);
     return Array.isArray(response.data) ? response.data : [];
   } catch (error) {
     console.error("Error fetching users:", error);
@@ -177,15 +178,37 @@ export const deleteCategory = async (id) => {
   return fetch(`${API_URL}/categories/${id}`, { method: "DELETE" });
 };
 
-
 export const getOrders = async () => {
-  const response = await axios.get(`${API_URL}/orders`);
-  return response.data;
+  try {
+    const response = await axios.get(`${API_URL}/orders`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching orders:", error);
+    throw error;  
+  }
+};
+export const deleteOrder = async (id) => {
+  try {
+    await axios.delete(`${API_URL}/orders/${id}`);
+  } catch (error) {
+    console.error(`Error deleting order with id ${id}:`, error);
+    throw error; 
+  }
+};
+export const createOrder = async (orderData) => {
+  try {
+      const response = await axios.post(`${API_URL}/admin/order`, orderData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+      },
+      });
+      return response.data;
+  } catch (error) {
+      console.error('Error creating order:', error);
+      throw error;
+  }
 };
 
-export const deleteOrder = async (id) => {
-  await axios.delete(`${API_URL}/orders/${id}`);
-};
 export const getOrderById = async (orderId) => {
   try {
       const response = await axios.get(`${API_URL}/orders/${orderId}`);
@@ -223,20 +246,6 @@ export const getDiscountById = async(discountId)=>{
   return response.data
 }
 
-
-export const createOrder = async (orderData) => {
-  try {
-      const response = await axios.post(`${API_URL}/admin/order`, orderData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-      },
-      });
-      return response.data;
-  } catch (error) {
-      console.error('Error creating order:', error);
-      throw error;
-  }
-};
 
 export const addProductToOrder = async (orderId, productData) => {
   try {
@@ -357,5 +366,14 @@ export const getUserOrders = async (userId) => {
   } catch (error) {
     console.error('Error fetching orders:', error);
     throw new Error('Could not fetch orders');
+  }
+};
+export const reports = async () => {
+  try {
+    const response = await axios.get(`${API_URL}/reports`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching orders:", error);
+    throw new Error("Could not fetch orders");
   }
 };

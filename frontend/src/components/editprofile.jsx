@@ -110,7 +110,9 @@ const EditProfile = () => {
     };
 
     return (
+        
         <div className="profile-layout">
+            <button className="back-btn-pd" onClick={() => navigate(-1)}>Back</button>
             <h2 className="profile-title">Your Profile</h2>
 
             <div className="profile-sections">
@@ -139,7 +141,7 @@ const EditProfile = () => {
                 </div>
 
                 <div className="address-section">
-                    <h3 className="section-title">Your Addresses</h3>
+                    <h3 className="section-titlee">Your Addresses</h3>
                     <ul className="address-list">
                         {addresses.map((address, index) => (
                             <li key={index} className="address-item">
@@ -160,7 +162,7 @@ const EditProfile = () => {
                 </div>
 
                 <div className="password-section">
-                    <h3 className="section-title">Change Password</h3>
+                    <h3 className="section-titlee">Change Password</h3>
                     {!isChangingPassword ? (
                         <button className="change-password-btn" onClick={() => setIsChangingPassword(true)}>Change Password</button>
                     ) : (
@@ -183,7 +185,7 @@ const EditProfile = () => {
                 </div>
 
                 <div className="orders-section">
-                    <h3 className="section-title">Collection Orders</h3>
+                    <h3 className="section-titlee">Collection Orders</h3>
                     <div className="orders-container">
                         {orders.length === 0 ? (
                             <p className="no-orders-message">You have no orders yet.</p>

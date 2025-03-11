@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { getOrders, fetchUsers, fetchProducts, createOrder, fetchDiscountCodes,deleteOrder } from '../services/api';
+import { Link,useNavigate } from 'react-router-dom';
+import { getOrders, fetchUsers, fetchProducts, createOrder, fetchDiscountCodes, deleteOrder } from '../services/api';
 import "../asset/css/order.css";
 
 const Adminorder = () => {
     const [orders, setOrders] = useState([]);
     const [users, setUsers] = useState([]);
-    const [products, setProducts] = useState([]); 
-    const [discounts, setDiscounts] = useState([]);  // State for discount codes
+    const [products, setProducts] = useState([]);
+    const [discounts, setDiscounts] = useState([]);
     const [showForm, setShowForm] = useState(false);
     const [username, setUsername] = useState('');
     const [status, setStatus] = useState('Pending');
@@ -15,22 +15,20 @@ const Adminorder = () => {
     const [selectedProducts, setSelectedProducts] = useState([]);
     const [quantities, setQuantities] = useState([]);
     const [message, setMessage] = useState('');
-    const [discountId, setDiscountId] = useState(null); 
+    const [discountId, setDiscountId] = useState(null);
+    const navigate = useNavigate();
     const [image, setImage] = useState(null);
-    const [searchTerm, setSearchTerm] = useState("");  
-    const filteredOrders = orders.filter(order => 
-        order.id.toString().includes(searchTerm) || 
+    const [searchTerm, setSearchTerm] = useState("");
+    const filteredOrders = orders.filter(order =>
+        order.id.toString().includes(searchTerm) ||
         order.userid.toString().includes(searchTerm) ||
         order.status.toLowerCase().includes(searchTerm.toLowerCase())
     );
     useEffect(() => {
         fetchOrders();
         fetchProductList();
-        fetchDiscountCodesList(); 
+        fetchDiscountCodesList();
     }, []);
-
-    
-    
     const fetchOrders = async () => {
         try {
             const data = await getOrders();
@@ -44,7 +42,7 @@ const Adminorder = () => {
 
     const fetchProductList = async () => {
         try {
-            const productsData = await fetchProducts(); 
+            const productsData = await fetchProducts();
             setProducts(productsData);
         } catch (error) {
             console.error('Error fetching products:', error);
@@ -53,7 +51,7 @@ const Adminorder = () => {
 
     const fetchDiscountCodesList = async () => {
         try {
-            const discountData = await fetchDiscountCodes(); 
+            const discountData = await fetchDiscountCodes();
             setDiscounts(discountData);
         } catch (error) {
             console.error('Error fetching discount codes:', error);
@@ -61,43 +59,43 @@ const Adminorder = () => {
     };
 
     const handleAddProductField = () => {
-        setSelectedProducts([...selectedProducts, '']);  
-        setQuantities([...quantities, 1]); 
+        setSelectedProducts([...selectedProducts, '']);
+        setQuantities([...quantities, 1]);
     };
-    
-    
+
+
     const handleProductChange = (index, value) => {
         const updatedProducts = [...selectedProducts];
-    
+
         if (updatedProducts.includes(value)) {
             setMessage('ไม่สามารถเลือกสินค้าซ้ำได้');
             return;
         }
-    
+
         updatedProducts[index] = value;
         setSelectedProducts(updatedProducts);
-    
+
     };
-    
+
 
     const handleQuantityChange = (index, value) => {
         const updatedQuantities = [...quantities];
         updatedQuantities[index] = value;
-        setQuantities(updatedQuantities);  
+        setQuantities(updatedQuantities);
     };
 
     const handleImageChange = (e) => {
         const file = e.target.files[0];
         if (file) {
             console.log("Image selected:", file);
-            setImage(file); 
+            setImage(file);
         }
     };
     const handleDeleteOrder = async (orderId) => {
         try {
-          
+
             await deleteOrder(orderId);
-          
+
             setOrders(orders.filter(order => order.id !== orderId));
             alert('คำสั่งซื้อลบเรียบร้อยแล้ว');
         } catch (error) {
@@ -108,7 +106,7 @@ const Adminorder = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-    
+
         try {
             const newOrder = {
                 username,
@@ -121,47 +119,47 @@ const Adminorder = () => {
                 discountCode: discountId,
                 image,
             };
-    
-       
+
+
             const formData = new FormData();
             formData.append("username", newOrder.username);
             formData.append("status", newOrder.status);
             formData.append("shippingAddress", newOrder.shippingAddress);
             formData.append("discountCode", newOrder.discountCode);
-    
-           
+
+
             newOrder.products.forEach((item) => {
-                formData.append("selectedProducts[]", item.productId); 
-                formData.append("quantities[]", item.quantity);       
-            });            
-    
+                formData.append("selectedProducts[]", item.productId);
+                formData.append("quantities[]", item.quantity);
+            });
+
 
             if (newOrder.image && newOrder.image instanceof File) {
-                formData.append("image", newOrder.image); 
+                formData.append("image", newOrder.image);
             }
-    
-         
+
+
             for (let pair of formData.entries()) {
                 console.log(`${pair[0]}: ${pair[1]}`);
             }
-    
-           
+
+
             await createOrder(formData);
-    
-         
+
+
             setMessage('คำสั่งซื้อถูกเพิ่มเรียบร้อยแล้ว');
             setShowForm(false);
-            fetchOrders(); 
-    
+            fetchOrders();
+
         } catch (error) {
             setMessage('เกิดข้อผิดพลาดในการเพิ่มคำสั่งซื้อ');
             console.error('Error adding order:', error);
         }
     };
-    
-    
-    
-    
+
+
+
+
     return (
         <div className="admin-order-dashboard-container">
             <h2 className="admin-order-dashboard-title">Order Dashboard</h2>
@@ -177,8 +175,9 @@ const Adminorder = () => {
                     className="admin-search-input"
                 />
             </div>
-
+            <button className="back-btn-pd" onClick={() => navigate(-1)}>Back</button>
             {showForm && (
+                
                 <div className="admin-popup-overlay" onClick={() => setShowForm(false)}>
                     <div className="admin-popup-content" onClick={(e) => e.stopPropagation()}>
                         <span className="admin-close-btn" onClick={() => setShowForm(false)}>✖</span>
@@ -213,10 +212,10 @@ const Adminorder = () => {
 
                             <div className="admin-form-group">
                                 <label className="admin-form-label">Shipping Address:</label>
-                                <input 
-                                    type="text" 
-                                    value={shippingAddress} 
-                                    onChange={(e) => setShippingAddress(e.target.value)} 
+                                <input
+                                    type="text"
+                                    value={shippingAddress}
+                                    onChange={(e) => setShippingAddress(e.target.value)}
                                     required
                                     className="admin-input"
                                 />
@@ -225,10 +224,10 @@ const Adminorder = () => {
 
                             <div className="admin-form-group">
                                 <label className="admin-form-label">Upload Image:</label>
-                                <input 
-                                    type="file" 
-                                    onChange={handleImageChange} 
-                                    accept="image/*" 
+                                <input
+                                    type="file"
+                                    onChange={handleImageChange}
+                                    accept="image/*"
                                     className="admin-input-file"
                                 />
                             </div>
@@ -237,7 +236,7 @@ const Adminorder = () => {
                                 <label className="admin-form-label">Product(s):</label>
                                 {selectedProducts.map((product, index) => (
                                     <div key={index} className="admin-product-input">
-                       
+
                                         <select
                                             value={product}
                                             onChange={(e) => handleProductChange(index, e.target.value)}
@@ -252,7 +251,7 @@ const Adminorder = () => {
                                             ))}
                                         </select>
 
-                                      
+
                                         <input
                                             type="number"
                                             value={quantities[index]}
@@ -323,8 +322,8 @@ const Adminorder = () => {
                                     textAlign: "center",
                                     display: "inline-block",
                                     minWidth: "100px",
-                                    marginLeft:"35%",
-                                    marginTop:"3%"
+                                    marginLeft: "35%",
+                                    marginTop: "3%"
                                 }}
                             >
                                 {order.status}

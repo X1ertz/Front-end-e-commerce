@@ -1,4 +1,9 @@
-
+.overflow{
+  overflow-x: hidden;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
 .product-cards {
   display: flex;
   flex-wrap: wrap;
@@ -7,7 +12,7 @@
   margin: 20px 0;
   width: 100%;
   margin-left: 6%;
-
+  
 }
 .nav-linkss {
   list-style: none;
@@ -51,7 +56,7 @@
   }
   
   .card-front {
-    background-color: rgba(241, 241, 241, 0.42); /* ใช้ rgba สำหรับความโปร่งใส */
+    background-color: rgba(241, 241, 241, 0.42); 
     color: #fff;
     display: flex;
     align-items: center;
@@ -257,10 +262,11 @@ margin-left: 10%;
   padding: 40px 20px
   
 }
-.section-title {
+.section-titlex {
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 20px;
+
 }
 .partners-container {
   display: flex;
@@ -279,10 +285,10 @@ margin-left: 10%;
   margin-top: 10px;
   font-size: 14px;
 }
-.section-title{
-  top: 50%; /* กึ่งกลางแนวตั้ง */
-    left: 50%; /* กึ่งกลางแนวนอน */
-    transform: translate(45%, 50%);
+.section-titlex{
+  top: 50%;
+    left: 50%; 
+    transform: translate(45.5%, 50%);
     margin-bottom: 30px;
 }
 .desc{
@@ -300,8 +306,8 @@ margin-left: 10%;
     color: white;
     padding: 20px 0;
     text-align: center;
-    top: 50%; /* กึ่งกลางแนวตั้ง */
-    left: 50%; /* กึ่งกลางแนวนอน */
+    top: 50%; 
+    left: 50%; 
     transform: translate(0%, 50%);
     
 }
@@ -386,14 +392,13 @@ margin-left: 10%;
   top: 65%;
   left: 57%;
   transform: translate(50%, -50%);
-  /* background-color: rgba(0, 0, 0, 0.6); */
   color: white;
   padding: 10px 20px;
   border-radius: 5px;
   font-size: 1.5rem;
   text-align: center;
   z-index: 10;
-  /* border: 1px solid red; */
+
 }
 .btn-shop {
   display: flex;
@@ -572,14 +577,14 @@ strong {
   }
 }
 .sponsor{
-  margin-top: 10%;
+  margin-top: 20%;
 }
-@media (min-width: 1921px) and (max-width: 3075px) {
+@media (min-width: 1200px) and (max-width: 1440px) {
   .shop-now{
     position: absolute;
-    top: 50%;
+    top: 80%;
     left: 65%;
-    transform: translate(50%, -50%);
+    transform: translate(-100%, 200%);
     color: white;
     padding: 10px 20px;
     border-radius: 5px;
@@ -588,13 +593,13 @@ strong {
     z-index: 10;
   }
   .banner{
-    width: 80%;
+    width: 100%;
     height: 1000px;
     margin-top: 0%;
-    margin-left: 10%;
+    margin-left: 0%;
     }
   .card {
-      width: calc(15% - 16px); /* 100% / 5 คอลัมน์ - ระยะห่างระหว่างการ์ด */
+      width: calc(30% - 16px);
       height: 600px;
       perspective: 1000px;
       display: flex;
@@ -611,8 +616,8 @@ strong {
     transition: filter 250ms;
     user-select: none;
     touch-action: manipulation;
-    width: 80%;
-    margin-left: 10%;
+    width: 90%;
+    margin-left: 7%;
    }
    .banner2{
     width: 100%;
@@ -620,28 +625,80 @@ strong {
   
   }
   .section-title{
-    top: 50%; /* กึ่งกลางแนวตั้ง */
-      left: 50%; /* กึ่งกลางแนวนอน */
+    top: 50%; 
+      left: 50%; 
       transform: translate(48%, 50%);
       margin-bottom: 30px;
   }
   .input-containerx {
-    margin-left: 80%;
+    margin-left: 75%;
     width: 250px;
     position: relative;
   }
   
+
+  
+}
+@media (min-width: 700px) and (max-width: 1024px) {
+  .shop-now{
+  display: none;
+  }
+  .banner{
+    width: 100%;
+    height: 500px;
+    margin-top: 0%;
+    margin-left: 0%;
+    }
+    .head{
+      width: 100%;
+      height: 500px;
+      background-image: linear-gradient(to left, #efe9d5, #b0c0ac, #739890, #416e79, #27445d);
+      overflow: hidden;
+    }
+  .card {
+      width: calc(46% - 16px);
+      height: 600px;
+      perspective: 1000px;
+      display: flex;
+      flex-direction: column;
+    
+  }
+  .cart-btn {
+    position: relative;
+    border: none;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    outline-offset: 4px;
+    transition: filter 250ms;
+    user-select: none;
+    touch-action: manipulation;
+    width: 90%;
+    margin-left: 7%;
+   }
+   .banner2{
+    width: 100%;
+    height: 500px;
+  
+  }
+  .section-titlex{
+    margin-left: -15%;
+  }
+  .input-containerx {
+    margin-left: 30%;
+    width: 250px;
+    position: relative;
+  }
+
 
   .nav-linkss {
     list-style: none;
     margin-top: 0px;
     padding: 0;
     display: flex;
-    gap: 100px;
-    margin-top: 10px;
-    margin-left: -30%;
+    gap: 40px;
+    margin-top: 30px;
   }
-  
-  
+
   
 }

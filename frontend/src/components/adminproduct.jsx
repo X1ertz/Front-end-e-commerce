@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 import "../asset/css/addproduct.css";
 import { fetchProducts, addProduct, updateProduct, deleteProduct, fetchCategories } from "../services/api";
 
@@ -16,6 +17,7 @@ const AdminProduct = () => {
         sizes: [],
     });
     const [editing, setEditing] = useState(false);
+    const navigate = useNavigate();
     const [showForm, setShowForm] = useState(false);
     const [file, setFile] = useState(null);
     const [currentPage, setCurrentPage] = useState(1); 
@@ -101,19 +103,22 @@ const AdminProduct = () => {
         setFile(null);
     };
 
-    // คำนวณจำนวนหน้าทั้งหมด
+
     const totalPages = Math.ceil(products.length / itemsPerPage);
 
-    // ดึงข้อมูลเฉพาะหน้าที่เลือก
+
     const currentProducts = products.slice(
         (currentPage - 1) * itemsPerPage,
         currentPage * itemsPerPage
     );
 
     return (
+        
         <div className="admin-container">
             <div className="admin-header">
+                
                 <h2 className="admin-title">Product Management</h2>
+                <button className="back-btn-pd" onClick={() => navigate(-1)}>Back</button>
                 {!showForm && <button className="add-btn" onClick={() => setShowForm(true)}>
                     <div tabindex="0" class="plusButton">
                         <svg class="plusIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
@@ -160,7 +165,7 @@ const AdminProduct = () => {
                             }
                         }}
                     />
-                    <button type="submit">{editing ? "Update Product" : "Add Product"}</button>
+                    <button className="add-p-btn" type="submit">{editing ? "Update Product" : "Add Product"}</button>
                     <button type="button" className="cancel-btn" onClick={resetForm}>Cancel</button>
                 </form>
             )}
@@ -209,7 +214,7 @@ const AdminProduct = () => {
                             </td>
                             <td className="action-buttons">
                                 <button className="edit-btn" onClick={() => handleEdit(product)}>Edit</button>
-                                <button className="delete-btn" onClick={() => handleDelete(product.id)}>Delete</button>
+                                <button className="delete-btn-pd" onClick={() => handleDelete(product.id)}>Delete</button>
                             </td>
                         </tr>
                     ))}

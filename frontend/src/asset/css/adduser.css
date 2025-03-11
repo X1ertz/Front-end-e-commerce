@@ -1,4 +1,4 @@
-/* Container หลัก */
+
 .admin-panel {
     max-width: 900px;
     margin: 40px auto;
@@ -9,13 +9,12 @@
     text-align: center;
   }
   
-  /* หัวข้อ */
   .admin-panel h2 {
     font-size: 24px;
     margin-bottom: 20px;
   }
   
-  /* ฟอร์มเพิ่ม/แก้ไข */
+
   .admin-form {
     display: flex;
     flex-direction: column;
@@ -24,26 +23,15 @@
   }
   
   .admin-form input,
-  .admin-form select,
-  .admin-form button {
+  .admin-form select{
     padding: 10px;
     font-size: 16px;
     border: 1px solid #ddd;
     border-radius: 5px;
   }
   
-  .admin-form button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .admin-form button:hover {
-    background-color: #0056b3;
-  }
-  
-  /* ตารางข้อมูล */
+
+
   .admin-table {
     width: 100%;
     border-collapse: collapse;
@@ -61,23 +49,17 @@
     background-color: #f4f4f4;
   }
   
-  /* ปุ่มแก้ไข/ลบ */
   .action-buttons {
     display: flex;
     gap: 10px;
   }
   
-  .edit-btn {
-    background-color: #ffc107;
-    color: white;
-    padding: 6px 12px;
+  .admin-edit-btn{
+    background-color: green;
     border: none;
-    cursor: pointer;
     border-radius: 5px;
-  }
-  
-  .edit-btn:hover {
-    background-color: #e0a800;
+    padding: 10px 15px;
+    color: white;
   }
   
   .delete-btn {
@@ -93,10 +75,8 @@
     background-color: #c82333;
   }
   .plusButton {
-    /* Config start */
     --plus_sideLength: 2.5rem;
     --plus_topRightTriangleSideLength: 0.9rem;
-    /* Config end */
     position: relative;
     display: flex;
     justify-content: center;
@@ -155,4 +135,28 @@
   .show-form-btn{
     border: none;
     background: none;
+  }
+  .btn-submit-user {
+    background-color: #4CAF50; 
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 8px;
+  }
+  
+
+  .btn-cancle-user {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 8px;
+    margin-left: 0px;
+
   }

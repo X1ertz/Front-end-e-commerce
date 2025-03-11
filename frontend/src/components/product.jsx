@@ -111,7 +111,7 @@ function Product() {
   const handleScrollToProducts = () => {
     const productSection = document.getElementById("product-list");
     if (productSection) {
-      productSection.scrollIntoView({ behavior: "smooth" }); // เลื่อนแบบ Smooth
+      productSection.scrollIntoView({ behavior: "smooth" });
     }
   };
   
@@ -122,6 +122,7 @@ function Product() {
   };
   return (
     <>
+    <div className="overflow">
     <nav className="navbar">
             <ul className="nav-linkss">
               <li><Link to="/" >Home</Link></li>
@@ -139,7 +140,7 @@ function Product() {
                     {user.role == "admin" && (
                       <li><Link to="/admin">Admin Panel<FontAwesomeIcon className='icon' icon={faUserShield} /></Link></li>
                     )}
-                    <li><Link to="/edit-profile">Edit<FontAwesomeIcon className='icon' icon={faPen} /></Link></li>
+                    <li><Link to="/editprofile">Edit<FontAwesomeIcon className='icon' icon={faPen} /></Link></li>
                     <li><Link to="/cart">Cart<FontAwesomeIcon className='icon' icon={faShoppingCart} /></Link></li>
                     <li><Link to="/heart">Wishlist<FontAwesomeIcon className='icon' icon={faHeart} /></Link></li>
                     <li>
@@ -279,8 +280,8 @@ function Product() {
         </div>
       </div>
       <div className="sponsor">
-      <div class="section">
-        <div class="section-title"> MAIN PARTNERS.</div>
+      <div class="section-sp">
+        <div class="section-titlex"> MAIN PARTNERS.</div>
         <div class="partners-container">
             <div class="partner">
                 <img src="/asset/images/chang.png" alt="" style={{ width: "100px" }}/>
@@ -293,8 +294,8 @@ function Product() {
         </div>
     </div>
 
-    <div class="section">
-        <div class="section-title">OFFICIAL PARTNERS</div>
+    <div class="section-sp">
+        <div class="section-titlex">OFFICIAL PARTNERS</div>
         <div class="partners-container">
             <div class="partner">
                 <img src="/asset/images/monster.png" alt="" style={{ width: "95px" }}/>
@@ -323,8 +324,8 @@ function Product() {
         </div>
     </div>
      
-    <div class="section">
-        <div class="section-title">OFFICIAL SUPPLIERS</div>
+    <div class="section-sp">
+        <div class="section-titlex">OFFICIAL SUPPLIERS</div>
         <div class="partners-container">
             <div class="partner">
                 <img src="/asset/images/java.png" alt=""style={{ height: "90px", width:"100%"}}  />
@@ -378,6 +379,7 @@ function Product() {
             </a>
           </div>
         </footer>
+        </div>
     </>
   );
 }

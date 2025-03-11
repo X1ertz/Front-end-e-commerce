@@ -68,7 +68,7 @@ const Login = () => {
             <div className="underline"></div>
           </div>
 
-          <Link to="#" style={{ textDecoration: 'none' }} className="forget">Forgot password?</Link>
+          {/* <Link to="#" style={{ textDecoration: 'none' }} className="forget">Forgot password?</Link> */}
 
           <button className="button" type="submit"><span>Login</span></button>
 

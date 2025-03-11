@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { getDiscounts, deleteDiscount, updateDiscount, createDiscount, getUsedDiscounts, deleteUsedDiscount, updateUsedDiscount,addUsedDiscount } from "../services/api";
 import "../asset/css/discount.css";
+import { useNavigate } from 'react-router-dom';
 const Discount = () => {
   const [discounts, setDiscounts] = useState([]);
   const [usedDiscounts, setUsedDiscounts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const navigate = useNavigate();
   const [editingDiscount, setEditingDiscount] = useState(null);
-  const [editingUsedDiscount, setEditingUsedDiscount] = useState(null); // Fix: Initialize state with null
+  const [editingUsedDiscount, setEditingUsedDiscount] = useState(null);
   const [formData, setFormData] = useState({ discount_name: "", percentage: "", userid: "", discountcode: "" });
   const [isUsedDiscountModalOpen, setIsUsedDiscountModalOpen] = useState(false);
 
@@ -126,6 +128,7 @@ const Discount = () => {
 
   return (
     <>
+    <button className="back-btn-pd" onClick={() => navigate(-1)}>Back</button>
     <div className="discount-management-container">
       <h2 className="discount-management-header">Discount Management</h2>
       <button className="add-discount-btn" onClick={handleAddDiscount}>Add Discount</button>

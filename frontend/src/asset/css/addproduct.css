@@ -32,8 +32,7 @@
     margin-bottom: 20px;
   }
   
-  .admin-form input,
-  .admin-form button {
+  .admin-form input {
     width: 100%;
     padding: 10px;
     margin: 10px 0;
@@ -41,16 +40,7 @@
     border: 1px solid #ddd;
   }
   
-  .admin-form button {
-    background: #007BFF;
-    color: white;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .admin-form button:hover {
-    background: #0056b3;
-  }
+
   
   .cancel-btn {
     background: #dc3545 !important;
@@ -81,23 +71,13 @@
     background: #f1f1f1;
   }
   
-  .action-buttons button {
-    padding: 5px 10px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-right: 5px;
-  }
   
   .edit-btn {
     background: #ffc107;
     color: black;
   }
   
-  .delete-btn {
-    background: #dc3545;
-    color: white;
-  }
+
   .pagination-controls {
     display: flex;
     justify-content: center;
@@ -130,4 +110,83 @@
     font-size: 16px;
     font-weight: bold;
     color: #333;
+}
+
+.delete-btn-pd {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  height: 38px;
+  margin-top: 4%;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.delete-btn-pd:hover {
+  background-color: #d32f2f; 
+}
+
+.delete-btn-pd:active {
+  background-color: #b71c1c;
+}
+
+.delete-btn-pd:focus {
+  outline: none;
+}
+.back-btn-pd {
+  position: absolute;
+  top: 20px;
+  left: 80px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.back-btn-pd:hover {
+  background-color: #0056b3;
+}
+
+.back-btn-pd:active {
+  background-color: #004085;
+}
+
+.back-btn-pd:focus {
+  outline: none;
+}
+.add-p-btn {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-transform: uppercase;
+  font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.add-p-btn:hover {
+  background-color: #218838;
+}
+
+.add-p-btn:active {
+  background-color: #1e7e34;
+}
+
+.add-p-btn:focus {
+  outline: none;
+}
+
+.add-p-btn:disabled {
+  background-color: #c6e3c4;
+  cursor: not-allowed;
 }

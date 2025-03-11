@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import '../asset/css/adduser.css';
-import { fetchUsers, addUser, updateUser, deleteUser, saveUser } from "../services/api";
-
+import { fetchUsers, addUser, deleteUser, saveUser } from "../services/api";
+import { useNavigate } from 'react-router-dom';
 const Adminuser = () => {
   const [users, setUsers] = useState([]);
   const [form, setForm] = useState({
@@ -13,8 +13,8 @@ const Adminuser = () => {
     adress: "",
   });
   const [editing, setEditing] = useState(false);
-  const [showForm, setShowForm] = useState(false); // ควบคุมการแสดงฟอร์ม
-
+  const navigate = useNavigate();
+  const [showForm, setShowForm] = useState(false); 
   useEffect(() => {
     loadUsers();
   }, []);
@@ -33,7 +33,7 @@ const Adminuser = () => {
       const updatedForm = { ...form };
   
       if (!updatedForm.password.trim()) {
-        delete updatedForm.password; // ❌ ถ้า password เป็นค่าว่าง ให้ลบออก
+        delete updatedForm.password;
       }
   
       if (editing) {
@@ -82,7 +82,8 @@ const Adminuser = () => {
 
   return (
     <div className="admin-panel">
-      <h2>Admin Panel</h2>
+      <button className="back-btn-pd" onClick={() => navigate(-1)}>Back</button>
+      <h2>Admin User Panel</h2>
       
       {!showForm && (
         <button className="show-form-btn" onClick={() => setShowForm(true)}><div tabindex="0" class="plusButton">
@@ -110,8 +111,8 @@ const Adminuser = () => {
             <option value="admin">Admin</option>
           </select>
           <input type="text" placeholder="Address" value={form.adress} onChange={(e) => setForm({ ...form, adress: e.target.value })} />
-          <button type="submit">{editing ? "Update User" : "Add User"}</button>
-          <button type="button" onClick={resetForm}>Cancel</button>
+          <button className='btn-submit-user' type="submit">{editing ? "Update User" : "Add User"}</button>
+          <button  className='btn-cancle-user' type="button" onClick={resetForm}>Cancel</button>
         </form>
       )}
 
@@ -135,8 +136,8 @@ const Adminuser = () => {
               <td>{user.role}</td>
               <td>{user.adress}</td>
               <td className="action-buttons">
-                <button className="edit-btn" onClick={() => handleEdit(user)}>Edit</button>
-                <button className="delete-btn" onClick={() => handleDelete(user.id)}>Delete</button>
+                <button className="admin-edit-btn" onClick={() => handleEdit(user)}>Edit</button>
+                <button className="admin-delete-btn" onClick={() => handleDelete(user.id)}>Delete</button>
               </td>
             </tr>
           ))}

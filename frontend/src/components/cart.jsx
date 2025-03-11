@@ -144,13 +144,13 @@ const Cart = () => {
               </li>
             </>
           ) : (
-            <li><Link to="/login">Sign in</Link></li> // Link to login page if the user is not logged in
+            <li><Link to="/login">Sign in</Link></li>
           )}
 
         </ul>
       </nav>
       <div className="cart-container">
-        <button className="button-back" onClick={() => window.history.back()}>
+        <button className="button-back" onClick={() => navigate("/")}>
           <span className="button-span1">
           <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
             <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 12h14M5 12l4-4m-4 4 4 4" />
@@ -176,7 +176,7 @@ const Cart = () => {
                     onChange={(e) => handleQuantityChange(index, parseInt(e.target.value))}
                   />
                 </label>
-                <button onClick={() => handleRemoveItem(index)}>Remove</button>
+                <button className="remove-item"onClick={() => handleRemoveItem(index)}>Remove</button>
                 <label className="select">
                   <input type="checkbox" checked={selectedItems.includes(index)} onChange={() => handleSelectItem(index)} />
                   <span className="checkmark"></span>

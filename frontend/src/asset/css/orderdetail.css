@@ -26,18 +26,12 @@
 
 
 
-button {
-    cursor: pointer;
-    font-size: 16px;
-    padding: 8px 15px;
-    border: none;
-    border-radius: 6px;
-    transition: all 0.3s ease-in-out;
-}
-
 
 .order-btn-edit {
     background: #007bff;
+    padding: 8px 10px;
+    border: none;
+    border-radius:  5px;
     color: white;
 }
 
@@ -74,6 +68,9 @@ button {
     background: #6c757d;
     margin-left:  5px;
     color: white;
+    padding: 8px 10px;
+    border: none;
+    border-radius: 5px
 }
 
 .order-btn-proof:hover {
@@ -142,6 +139,9 @@ button {
 .order-btn-toggle-delete {
     background: #ffc107;
     color: black;
+    padding: 5px 8px;
+    border: none;
+    border-radius: 5px;
 }
 
 .order-btn-toggle-delete:hover {
@@ -150,13 +150,16 @@ button {
 }
 
 
-.order-btn-add-product {
-    background: #17a2b8;
+.order-btn-add {
+    background: #02aa1e;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
     color: white;
 }
 
-.order-btn-add-product:hover {
-    background: #138496;
+.order-btn-add:hover {
+    background: #009207;
     transform: scale(1.05);
 }
 
@@ -250,4 +253,39 @@ button {
     max-width: 100%;
     border-radius: 8px;
     margin-bottom: -15px;
+}
+.edit-quantity-btn{
+    padding: 5px  8px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+.save-quantity-btn{
+    padding: 5px  8px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+.cancel-quantity-btn{
+    margin-left: 5px;
+    padding: 5px  8px;
+    background-color: #a72828;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+.order-btn-submit{
+    height: 40px;
+    background-color: #009207;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+}
+.order-btn-submit:hover{
+    transform: scale(1.02);
+    background-color: #218838;
 }

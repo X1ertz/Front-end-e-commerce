@@ -1,4 +1,4 @@
-/* Profile Layout */
+
 .profile-layout {
     padding: 20px;
     max-width: 800px;
@@ -51,7 +51,7 @@
     background-color: #45a049;
 }
 
-/* Profile Form */
+
 .profile-form-container {
     display: flex;
     flex-direction: column;
@@ -108,7 +108,7 @@
     background-color: #e53935;
 }
 
-/* Address Section */
+
 .address-section {
     margin-top: 40px;
 }
@@ -185,7 +185,7 @@
     background-color: #45a049;
 }
 
-/* Password Section */
+
 .password-section {
     margin-top: 40px;
 }
@@ -223,7 +223,7 @@
     margin-bottom: 20px;
 }
 
-/* Orders Section */
+
 .orders-section {
     margin-top: 40px;
 }
