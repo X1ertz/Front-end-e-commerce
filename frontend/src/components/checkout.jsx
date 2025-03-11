@@ -51,62 +51,62 @@ const Checkout = () => {
     setPaymentProof(e.target.files[0]);
   };
 
-  // const handleCheckout = async () => {
-  //   if (!storedUser) {
-  //     toastr.error("กรุณาเข้าสู่ระบบก่อนทำการชำระเงิน");
-  //     return;
-  //   }
-  //   if (!selectedAddress) {
-  //     toastr.error("กรุณาเลือกที่อยู่สำหรับจัดส่ง");
-  //     return;
-  //   }
-  //   if (!selectedOption) {
-  //     toastr.error("กรุณาเลือกวิธีชำระเงิน");
-  //     return;
-  //   }
-  //   if (!paymentProof) {
-  //     toastr.error("กรุณาอัปโหลดหลักฐานการชำระเงิน");
-  //     return;
-  //   }
+  const handleCheckout = async () => {
+    if (!storedUser) {
+      toastr.error("กรุณาเข้าสู่ระบบก่อนทำการชำระเงิน");
+      return;
+    }
+    if (!selectedAddress) {
+      toastr.error("กรุณาเลือกที่อยู่สำหรับจัดส่ง");
+      return;
+    }
+    if (!selectedOption) {
+      toastr.error("กรุณาเลือกวิธีชำระเงิน");
+      return;
+    }
+    if (!paymentProof) {
+      toastr.error("กรุณาอัปโหลดหลักฐานการชำระเงิน");
+      return;
+    }
 
-  //   const formData = new FormData();
-  //   formData.append("userId", userId);
-  //   formData.append("items", JSON.stringify(selectedProducts.map((item) => ({
-  //     productId: item.id,
-  //     productName: item.productname,
-  //     quantity: item.quantity,
-  //     unitPrice: item.unitprice,
-  //     sizes: item.size,
-  //     totalPrice: item.unitprice * item.quantity,
-  //   }))));
+    const formData = new FormData();
+    formData.append("userId", userId);
+    formData.append("items", JSON.stringify(selectedProducts.map((item) => ({
+      productId: item.id,
+      productName: item.productname,
+      quantity: item.quantity,
+      unitPrice: item.unitprice,
+      sizes: item.size,
+      totalPrice: item.unitprice * item.quantity,
+    }))));
 
-  //   formData.append("totalAmount", total - appliedDiscount);
-  //   formData.append("discountUsed", usedDiscount ? JSON.stringify(usedDiscount) : "");
-  //   formData.append("shippingAddress", selectedAddress);
-  //   formData.append("orderDate", new Date().toISOString());
-  //   formData.append("paymentProof", paymentProof); 
+    formData.append("totalAmount", total - appliedDiscount);
+    formData.append("discountUsed", usedDiscount ? JSON.stringify(usedDiscount) : "");
+    formData.append("shippingAddress", selectedAddress);
+    formData.append("orderDate", new Date().toISOString());
+    formData.append("paymentProof", paymentProof); 
 
-  //   console.log("📌 Order Data being sent:", JSON.stringify(Object.fromEntries(formData.entries()), null, 2));
+    console.log("📌 Order Data being sent:", JSON.stringify(Object.fromEntries(formData.entries()), null, 2));
 
-  //   try {
-  //     await axios.post("https://node71731-back-end.proen.app.ruk-com.cloud:11502/order", formData, {
-  //       headers: { "Content-Type": "multipart/form-data" }
-  //     });
-  //     toastr.success("สั่งซื้อสำเร็จ!");
+    try {
+      await axios.post("https://back-end-e-commerce-p0si.onrender.com/order", formData, {
+        headers: { "Content-Type": "multipart/form-data" }
+      });
+      toastr.success("สั่งซื้อสำเร็จ!");
 
-  //     let claimedCodes = JSON.parse(localStorage.getItem(`user_${userId}_claimedCodes`)) || [];
-  //     if (usedDiscount) {
-  //       claimedCodes = claimedCodes.filter(code => code.id !== usedDiscount.id);
-  //       localStorage.setItem(`user_${userId}_claimedCodes`, JSON.stringify(claimedCodes));
-  //     }
+      let claimedCodes = JSON.parse(localStorage.getItem(`user_${userId}_claimedCodes`)) || [];
+      if (usedDiscount) {
+        claimedCodes = claimedCodes.filter(code => code.id !== usedDiscount.id);
+        localStorage.setItem(`user_${userId}_claimedCodes`, JSON.stringify(claimedCodes));
+      }
 
-  //     localStorage.removeItem(`${userId}_cart`);
-  //     navigate("/");
-  //   } catch (error) {
-  //     console.error("❌ Error during checkout:", error);
-  //     toastr.error("เกิดข้อผิดพลาด: ไม่สามารถสั่งซื้อได้");
-  //   }
-  // };
+      localStorage.removeItem(`${userId}_cart`);
+      navigate("/");
+    } catch (error) {
+      console.error("❌ Error during checkout:", error);
+      toastr.error("เกิดข้อผิดพลาด: ไม่สามารถสั่งซื้อได้");
+    }
+  };
 
   const handleAddAddress = () => {
     if (!address.trim()) {

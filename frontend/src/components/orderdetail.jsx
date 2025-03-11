@@ -22,7 +22,7 @@ const OrderDetail = () => {
     const [showAddProductForm, setShowAddProductForm] = useState(false);
     const [newProduct, setNewProduct] = useState({ productId: '', quantity: 1 });
 
-    // const base_url = "http://localhost:3000";
+    const base_url = "https://back-end-e-commerce-p0si.onrender.com";
 
     useEffect(() => {
         const fetchOrderDetails = async () => {

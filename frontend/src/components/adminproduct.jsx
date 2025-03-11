@@ -22,7 +22,7 @@ const AdminProduct = () => {
     const [file, setFile] = useState(null);
     const [currentPage, setCurrentPage] = useState(1); 
     const itemsPerPage = 8;
-    // const base_url = "https://node71731-back-end.proen.app.ruk-com.cloud:11502";
+    const base_url = "https://back-end-e-commerce-p0si.onrender.com";
 
     useEffect(() => {
         loadProducts();
