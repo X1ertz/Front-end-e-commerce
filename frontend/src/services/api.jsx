@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 
-const API_URL = 'https://node71731-back-end.proen.app.ruk-com.cloud:11502';
+// const API_URL = 'https://node71731-back-end.proen.app.ruk-com.cloud:11502';
 
 export const sendDataToBackend = async (data) => {
   console.log('Sending data to backend:', data);
