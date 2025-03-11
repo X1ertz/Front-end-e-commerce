@@ -89,7 +89,7 @@ const Checkout = () => {
     console.log("📌 Order Data being sent:", JSON.stringify(Object.fromEntries(formData.entries()), null, 2));
 
     try {
-      await axios.post("http://localhost:3000/order", formData, {
+      await axios.post("https://node71731-back-end.proen.app.ruk-com.cloud:11502/order", formData, {
         headers: { "Content-Type": "multipart/form-data" }
       });
       toastr.success("สั่งซื้อสำเร็จ!");

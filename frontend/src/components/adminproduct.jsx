@@ -22,7 +22,7 @@ const AdminProduct = () => {
     const [file, setFile] = useState(null);
     const [currentPage, setCurrentPage] = useState(1); 
     const itemsPerPage = 8;
-    const base_url = "http://localhost:3000";
+    const base_url = "https://node71731-back-end.proen.app.ruk-com.cloud:11502";
 
     useEffect(() => {
         loadProducts();

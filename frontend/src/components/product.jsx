@@ -8,7 +8,7 @@ import { Link,useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faGear,faPen,faHeart, faShoppingCart,faDoorOpen,faUserShield } from "@fortawesome/free-solid-svg-icons";
 function Product() {
-  const base_url = "http://localhost:3000"  
+  const base_url = "https://node71731-back-end.proen.app.ruk-com.cloud:11502"  
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
