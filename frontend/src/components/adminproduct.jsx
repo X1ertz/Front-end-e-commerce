@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import "../asset/css/addproduct.css";
 import { fetchProducts, addProduct, updateProduct, deleteProduct, fetchCategories } from "../services/api";
-
+//
 const AdminProduct = () => {
     const [products, setProducts] = useState([]);
     const [categories, setCategories] = useState([]); 
